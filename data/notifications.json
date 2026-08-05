@@ -1,0 +1,65 @@
+{
+  "updated": "2026-08-04T00:00:00+05:30",
+  "notifications": [
+    {
+      "id": 1,
+      "title": "Admission Form 2026-27 is now open",
+      "body": "Applications for the 2026-27 session are being accepted. Limited seats available across classes.",
+      "category": "admission",
+      "link": "admissions.html#apply",
+      "linkText": "Apply now",
+      "date": "2026-08-01",
+      "active": true,
+      "pinned": true,
+      "showInBar": true
+    },
+    {
+      "id": 2,
+      "title": "Registration open for MUST 2026",
+      "body": "Max Ultimate Scholarship Test 2026 on 15th, 22nd and 29th March. Scholarships up to 90% on tuition fee, in partnership with Physics Wallah Vidyapeeth.",
+      "category": "exam",
+      "link": "admissions.html#scholarship",
+      "linkText": "Check eligibility",
+      "date": "2026-07-28",
+      "active": true,
+      "pinned": false,
+      "showInBar": true
+    },
+    {
+      "id": 3,
+      "title": "Manali educational trip concluded",
+      "body": "Students returned from a five-day excursion to Manali. Photographs from all five days are now up in the gallery.",
+      "category": "event",
+      "link": "gallery.html",
+      "linkText": "View gallery",
+      "date": "2026-07-20",
+      "active": true,
+      "pinned": false,
+      "showInBar": false
+    },
+    {
+      "id": 4,
+      "title": "Inter-house Speech Competition held",
+      "body": "The annual speech competition saw participation across all houses, with awards for content, delivery and confidence.",
+      "category": "event",
+      "link": "",
+      "linkText": "",
+      "date": "2026-07-12",
+      "active": true,
+      "pinned": false,
+      "showInBar": false
+    },
+    {
+      "id": 5,
+      "title": "International Yoga Day celebrated",
+      "body": "Students and faculty took part in a campus-wide yoga session, followed by a talk on daily discipline and wellbeing.",
+      "category": "event",
+      "link": "",
+      "linkText": "",
+      "date": "2026-06-21",
+      "active": true,
+      "pinned": false,
+      "showInBar": false
+    }
+  ]
+}
