@@ -5,8 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Facilities and Features | Max The Gurukul, Karnal</title>
 <meta name="description" content="Unique features and facilities at Max The Gurukul — from NCC training to fully AC campus and hostel.">
-<link rel="icon" href="images/logo.png">
+<link rel="icon" type="image/png" href="images/favicon.png">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/chatbot.css">
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -29,7 +30,11 @@
 <header class="site-header">
   <div class="nav-row wrap">
     <a href="index.html" class="brand">
-      <img src="images/logo.png" alt="Max The Gurukul logo">
+      <picture>
+        <source type="image/webp" srcset="images/optimized/logo-160.webp 160w, images/optimized/logo-320.webp 320w, images/optimized/logo-480.webp 480w" sizes="122px">
+        <img src="images/optimized/logo-160.png" srcset="images/optimized/logo-160.png 160w, images/optimized/logo-320.png 320w, images/optimized/logo-480.png 480w" sizes="122px"
+             width="480" height="320" alt="Max The Gurukul logo" decoding="async">
+      </picture>
       <span class="brand-text">
         <span>The Future Begins Here</span>
         <span>MAX THE GURUKUL</span>
@@ -120,6 +125,40 @@
       <div class="stripe"><span class="b1"></span><span class="b2"></span><span class="b3"></span></div>
     </div>
     <p class="section-intro">Our campus blends Gurukul traditions with modern facilities that prepare students for academic success, leadership, and competitive careers.</p>
+    <!-- Photographs come from images/optimized/ (WebP with a JPEG fallback, four
+         widths) - never from the multi-megapixel originals in images/. See
+         tools/README.md. Only this first strip is eager; everything further down
+         the page is lazy. -->
+    <div class="photo-gallery portrait-set">
+      <figure>
+        <picture>
+          <source type="image/webp" srcset="images/optimized/classroom-full-session-400.webp 400w, images/optimized/classroom-full-session-640.webp 640w, images/optimized/classroom-full-session-900.webp 900w, images/optimized/classroom-full-session-1280.webp 1280w" sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 96px) / 3), 361px">
+          <img src="images/optimized/classroom-full-session-640.jpg" srcset="images/optimized/classroom-full-session-400.jpg 400w, images/optimized/classroom-full-session-640.jpg 640w, images/optimized/classroom-full-session-900.jpg 900w, images/optimized/classroom-full-session-1280.jpg 1280w"
+               sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 96px) / 3), 361px"
+               width="1280" height="1707" alt="A wide view down a full classroom during a lesson" loading="eager" fetchpriority="high" decoding="async">
+        </picture>
+        <figcaption>Competitive Exam Prep<small>Full sessions, every day</small></figcaption>
+      </figure>
+      <!-- 9:16 frame in a 3/4 tile - --pos keeps the archer, not the sky. -->
+      <figure style="--pos:center 42%">
+        <picture>
+          <source type="image/webp" srcset="images/optimized/archery-stance-400.webp 400w, images/optimized/archery-stance-640.webp 640w, images/optimized/archery-stance-900.webp 900w, images/optimized/archery-stance-1280.webp 1280w" sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 96px) / 3), 361px">
+          <img src="images/optimized/archery-stance-640.jpg" srcset="images/optimized/archery-stance-400.jpg 400w, images/optimized/archery-stance-640.jpg 640w, images/optimized/archery-stance-900.jpg 900w, images/optimized/archery-stance-1280.jpg 1280w"
+               sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 96px) / 3), 361px"
+               width="1280" height="2276" alt="A student setting up an archery shot on the lawn with the bow lowered" loading="eager" fetchpriority="high" decoding="async">
+        </picture>
+        <figcaption>Thirteen Coached Games<small>Professional training</small></figcaption>
+      </figure>
+      <figure>
+        <picture>
+          <source type="image/webp" srcset="images/optimized/doubt-class-close-up-400.webp 400w, images/optimized/doubt-class-close-up-640.webp 640w, images/optimized/doubt-class-close-up-900.webp 900w, images/optimized/doubt-class-close-up-1280.webp 1280w" sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 96px) / 3), 361px">
+          <img src="images/optimized/doubt-class-close-up-640.jpg" srcset="images/optimized/doubt-class-close-up-400.jpg 400w, images/optimized/doubt-class-close-up-640.jpg 640w, images/optimized/doubt-class-close-up-900.jpg 900w, images/optimized/doubt-class-close-up-1280.jpg 1280w"
+               sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 96px) / 3), 361px"
+               width="1280" height="1707" alt="A small group of students at the board during a doubt-clearing class" loading="eager" fetchpriority="high" decoding="async">
+        </picture>
+        <figcaption>Daily Doubt Classes<small>Small groups at the board</small></figcaption>
+      </figure>
+    </div>
     <div class="facility-group" aria-labelledby="unique-features-head">
       <div class="group-head">
         <h3 id="unique-features-head">Distinctive Campus Strengths</h3>
@@ -137,6 +176,7 @@
       <div class="tile"><div class="ico"><svg viewBox="0 0 24 24"><path d="M3 12l4-7h10l4 7-9 9-9-9Z"/></svg></div><div><h4>Excursions</h4><p>Educational trips that extend learning beyond the classroom.</p></div></div>
       <div class="tile"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7Z"/></svg></div><div><h4>24×7 Surveillance</h4><p>Round-the-clock campus and hostel monitoring for complete safety.</p></div></div>
     </div>
+  </div>
   </div>
 </section>
 
@@ -165,16 +205,88 @@
       <div class="tile"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18 9 9 0 0 1 0-18Z"/></svg></div><div><h4>Art Room</h4><p>A creative studio for painting, craft and design.</p></div></div>
       <div class="tile"><div class="ico"><svg viewBox="0 0 24 24"><path d="M4 12h16M8 12V6h8v6M8 12v6h8v-6"/></svg></div><div><h4>Delicious Homely Food</h4><p>Nutritious, home-style meals prepared fresh daily.</p></div></div>
       <div class="tile"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 2 3 6v6c0 5 4 8 9 10 5-2 9-5 9-10V6l-9-4Z"/></svg></div><div><h4>NCC Training for NDA</h4><p>Structured NCC drills that build discipline for defence careers.</p></div></div>
+      </div>
+    </div>
+
+    <!-- Six of the eleven facilities above have a photograph worth showing. The
+         mess, laundry, computer lab, art room and kitchen have none yet, so they
+         stay as icon tiles rather than borrowing an unrelated image. -->
+    <div class="facility-group" aria-labelledby="residential-photos-head">
+      <div class="group-head">
+        <h3 id="residential-photos-head">On Campus</h3>
+        <p>What the air-conditioned classrooms, hostel wings, labs and library actually look like.</p>
+      </div>
+      <div class="photo-gallery portrait-set">
+        <figure>
+          <picture>
+            <source type="image/webp" srcset="images/optimized/classroom-ac-block-400.webp 400w, images/optimized/classroom-ac-block-640.webp 640w, images/optimized/classroom-ac-block-900.webp 900w, images/optimized/classroom-ac-block-1280.webp 1280w" sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 96px) / 3), 361px">
+            <img src="images/optimized/classroom-ac-block-640.jpg" srcset="images/optimized/classroom-ac-block-400.jpg 400w, images/optimized/classroom-ac-block-640.jpg 640w, images/optimized/classroom-ac-block-900.jpg 900w, images/optimized/classroom-ac-block-1280.jpg 1280w"
+                 sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 96px) / 3), 361px"
+                 width="1280" height="1707" alt="A classroom in session with a wall-mounted air conditioning unit" loading="lazy" decoding="async">
+          </picture>
+          <figcaption>Fully AC Campus<small>Every classroom and common area</small></figcaption>
+        </figure>
+        <figure>
+          <picture>
+            <source type="image/webp" srcset="images/optimized/hostel-room-beds-400.webp 400w, images/optimized/hostel-room-beds-640.webp 640w, images/optimized/hostel-room-beds-900.webp 900w, images/optimized/hostel-room-beds-1280.webp 1280w" sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 96px) / 3), 361px">
+            <img src="images/optimized/hostel-room-beds-640.jpg" srcset="images/optimized/hostel-room-beds-400.jpg 400w, images/optimized/hostel-room-beds-640.jpg 640w, images/optimized/hostel-room-beds-900.jpg 900w, images/optimized/hostel-room-beds-1280.jpg 1280w"
+                 sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 96px) / 3), 361px"
+                 width="1280" height="1707" alt="A hostel room with beds, lockers and storage trunks" loading="lazy" decoding="async">
+          </picture>
+          <figcaption>Fully AC Hostel<small>Beds, lockers and storage</small></figcaption>
+        </figure>
+        <figure>
+          <picture>
+            <source type="image/webp" srcset="images/optimized/hostel-dormitory-400.webp 400w, images/optimized/hostel-dormitory-640.webp 640w, images/optimized/hostel-dormitory-900.webp 900w, images/optimized/hostel-dormitory-1280.webp 1280w" sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 96px) / 3), 361px">
+            <img src="images/optimized/hostel-dormitory-640.jpg" srcset="images/optimized/hostel-dormitory-400.jpg 400w, images/optimized/hostel-dormitory-640.jpg 640w, images/optimized/hostel-dormitory-900.jpg 900w, images/optimized/hostel-dormitory-1280.jpg 1280w"
+                 sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 96px) / 3), 361px"
+                 width="1280" height="1707" alt="A hostel dormitory wing with made beds and study tables along one side" loading="lazy" decoding="async">
+          </picture>
+          <figcaption>Residential Wings<small>Study space at every bed</small></figcaption>
+        </figure>
+        <figure>
+          <picture>
+            <source type="image/webp" srcset="images/optimized/smart-classroom-lesson-400.webp 400w, images/optimized/smart-classroom-lesson-640.webp 640w, images/optimized/smart-classroom-lesson-900.webp 900w, images/optimized/smart-classroom-lesson-1280.webp 1280w" sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 96px) / 3), 361px">
+            <img src="images/optimized/smart-classroom-lesson-640.jpg" srcset="images/optimized/smart-classroom-lesson-400.jpg 400w, images/optimized/smart-classroom-lesson-640.jpg 640w, images/optimized/smart-classroom-lesson-900.jpg 900w, images/optimized/smart-classroom-lesson-1280.jpg 1280w"
+                 sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 96px) / 3), 361px"
+                 width="1280" height="1707" alt="Students at their desks facing an interactive smart board while a teacher presents" loading="lazy" decoding="async">
+          </picture>
+          <figcaption>Smart Classes<small>Interactive boards throughout</small></figcaption>
+        </figure>
+        <figure>
+          <picture>
+            <source type="image/webp" srcset="images/optimized/chemistry-lab-bench-400.webp 400w, images/optimized/chemistry-lab-bench-640.webp 640w, images/optimized/chemistry-lab-bench-900.webp 900w, images/optimized/chemistry-lab-bench-1280.webp 1280w" sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 96px) / 3), 361px">
+            <img src="images/optimized/chemistry-lab-bench-640.jpg" srcset="images/optimized/chemistry-lab-bench-400.jpg 400w, images/optimized/chemistry-lab-bench-640.jpg 640w, images/optimized/chemistry-lab-bench-900.jpg 900w, images/optimized/chemistry-lab-bench-1280.jpg 1280w"
+                 sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 96px) / 3), 361px"
+                 width="1280" height="1707" alt="Students working at laboratory benches fitted with stands and sinks" loading="lazy" decoding="async">
+          </picture>
+          <figcaption>Science Lab<small>Physics, Chemistry and Biology</small></figcaption>
+        </figure>
+        <figure>
+          <picture>
+            <source type="image/webp" srcset="images/optimized/library-study-carrels-400.webp 400w, images/optimized/library-study-carrels-640.webp 640w, images/optimized/library-study-carrels-900.webp 900w, images/optimized/library-study-carrels-1280.webp 1280w" sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 96px) / 3), 361px">
+            <img src="images/optimized/library-study-carrels-640.jpg" srcset="images/optimized/library-study-carrels-400.jpg 400w, images/optimized/library-study-carrels-640.jpg 640w, images/optimized/library-study-carrels-900.jpg 900w, images/optimized/library-study-carrels-1280.jpg 1280w"
+                 sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 96px) / 3), 361px"
+                 width="1280" height="1707" alt="Students reading at individual wooden study carrels in the library" loading="lazy" decoding="async">
+          </picture>
+          <figcaption>Library<small>Individual study carrels</small></figcaption>
+        </figure>
+      </div>
     </div>
   </div>
 </section>
+</main>
 
 <footer class="site-footer">
   <div class="wrap">
     <div class="footer-grid">
       <div>
         <div class="fbrand">
-          <img src="images/logo.png" alt="Max The Gurukul logo">
+          <picture>
+            <source type="image/webp" srcset="images/optimized/logo-240.webp 240w, images/optimized/logo-480.webp 480w" sizes="250px">
+            <img src="images/optimized/logo-320.png" srcset="images/optimized/logo-240.png 240w, images/optimized/logo-320.png 320w, images/optimized/logo-480.png 480w" sizes="250px"
+                 width="250" height="167" alt="Max The Gurukul logo" decoding="async" loading="lazy">
+          </picture>
         </div>
         <p>International education with traditional values — a modern Gurukul nurturing NDA, Sainik School and competitive-exam aspirants alongside strong character and discipline.</p>
       </div>
@@ -219,6 +331,7 @@
   </div>
 </footer>
 <script src="js/script.js"></script>
+<script src="js/chatbot.js"></script>
 <script src="js/notifications.js"></script>
 </body>
 </html>

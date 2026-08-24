@@ -5,8 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Results | Max The Gurukul, Karnal</title>
 <meta name="description" content="Academic results at Max The Gurukul across Class 10th, 12th, NEET, PW and Sainik School.">
-<link rel="icon" href="images/logo.png">
+<link rel="icon" type="image/png" href="images/favicon.png">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/chatbot.css">
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -29,7 +30,11 @@
 <header class="site-header">
   <div class="nav-row wrap">
     <a href="index.html" class="brand">
-      <img src="images/logo.png" alt="Max The Gurukul logo">
+      <picture>
+        <source type="image/webp" srcset="images/optimized/logo-160.webp 160w, images/optimized/logo-320.webp 320w, images/optimized/logo-480.webp 480w" sizes="122px">
+        <img src="images/optimized/logo-160.png" srcset="images/optimized/logo-160.png 160w, images/optimized/logo-320.png 320w, images/optimized/logo-480.png 480w" sizes="122px"
+             width="480" height="320" alt="Max The Gurukul logo" decoding="async">
+      </picture>
       <span class="brand-text">
         <span>The Future Begins Here</span>
         <span>MAX THE GURUKUL</span>
@@ -135,15 +140,31 @@
         </div>
       </div>
       <div class="tab-panel">
-        <div class="result-card">
+        <div class="result-card is-pw">
+          <span class="pw-flag">Under the PW programme</span>
           <h3>NEET</h3>
-          <p>Dedicated NEET preparation batches, guided by experienced faculty, help our medical aspirants build strong fundamentals alongside their regular school curriculum.</p>
+          <p>Our NEET preparation runs under the PW (Physics Wallah) Vidyapeeth programme. Dedicated batches, guided by PW's specialised faculty and study resources, help our medical aspirants build strong fundamentals alongside their regular school curriculum.</p>
+          <div class="pw-partner">
+            <img src="images/pw-logo.svg" alt="PW — Physics Wallah" class="pw-logo">
+            <div class="pw-partner-text">
+              <strong>Academic partner</strong>
+              <span>NEET &amp; competitive-exam preparation, delivered with PW Vidyapeeth.</span>
+            </div>
+          </div>
         </div>
       </div>
       <div class="tab-panel">
-        <div class="result-card">
+        <div class="result-card is-pw">
+          <span class="pw-flag">Academic partnership</span>
           <h3>PW (Competitive Exam Prep)</h3>
-          <p>In partnership with specialised faculty and resources, our PW-aligned batches support students preparing for engineering and other national-level entrance examinations.</p>
+          <p>In partnership with PW (Physics Wallah) Vidyapeeth, our PW-aligned batches support students preparing for NEET, engineering and other national-level entrance examinations — specialised faculty, structured test series and PW's own study material, inside the Gurukul campus.</p>
+          <div class="pw-partner">
+            <img src="images/pw-logo.svg" alt="PW — Physics Wallah" class="pw-logo">
+            <div class="pw-partner-text">
+              <strong>Academic partner</strong>
+              <span>NEET, JEE and national-level entrance preparation under one roof.</span>
+            </div>
+          </div>
         </div>
       </div>
       <div class="tab-panel">
@@ -172,7 +193,11 @@
     <div class="footer-grid">
       <div>
         <div class="fbrand">
-          <img src="images/logo.png" alt="Max The Gurukul logo">
+          <picture>
+            <source type="image/webp" srcset="images/optimized/logo-240.webp 240w, images/optimized/logo-480.webp 480w" sizes="250px">
+            <img src="images/optimized/logo-320.png" srcset="images/optimized/logo-240.png 240w, images/optimized/logo-320.png 320w, images/optimized/logo-480.png 480w" sizes="250px"
+                 width="250" height="167" alt="Max The Gurukul logo" decoding="async" loading="lazy">
+          </picture>
         </div>
         <p>International education with traditional values — a modern Gurukul nurturing NDA, Sainik School and competitive-exam aspirants alongside strong character and discipline.</p>
       </div>
@@ -217,6 +242,7 @@
   </div>
 </footer>
 <script src="js/script.js"></script>
+<script src="js/chatbot.js"></script>
 <script src="js/notifications.js"></script>
 </body>
 </html>

@@ -5,8 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contact Us | Max The Gurukul, Karnal</title>
 <meta name="description" content="Get in touch with Max The Gurukul, Karnal — address, phone, email and enquiry form.">
-<link rel="icon" href="images/logo.png">
+<link rel="icon" type="image/png" href="images/favicon.png">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/chatbot.css">
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -29,7 +30,11 @@
 <header class="site-header">
   <div class="nav-row wrap">
     <a href="index.html" class="brand">
-      <img src="images/logo.png" alt="Max The Gurukul logo">
+      <picture>
+        <source type="image/webp" srcset="images/optimized/logo-160.webp 160w, images/optimized/logo-320.webp 320w, images/optimized/logo-480.webp 480w" sizes="122px">
+        <img src="images/optimized/logo-160.png" srcset="images/optimized/logo-160.png 160w, images/optimized/logo-320.png 320w, images/optimized/logo-480.png 480w" sizes="122px"
+             width="480" height="320" alt="Max The Gurukul logo" decoding="async">
+      </picture>
       <span class="brand-text">
         <span>The Future Begins Here</span>
         <span>MAX THE GURUKUL</span>
@@ -113,7 +118,7 @@
 </section>
 
 <section>
-  <div class="wrap" style="display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start;">
+  <div class="wrap split-2" style="display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start;">
     <div>
       <span class="eyebrow">Get In Touch</span>
       <h2 style="margin:10px 0 16px;">Visit, call or write to us</h2>
@@ -124,6 +129,20 @@
         <div class="tile"><div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div><div><h4>Email</h4><p><a href="mailto:info@maxthegurukul.com">info@maxthegurukul.com</a><br><a href="mailto:principal@maxthegurukul.com">principal@maxthegurukul.com</a></p></div></div>
         <div class="tile"><div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></div><div><h4>Follow Us</h4><p><a href="https://www.instagram.com/maxthegurukul" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.facebook.com/maxthegurukul" target="_blank" rel="noopener">Facebook</a> · <a href="https://www.youtube.com/@MaxTheGurukul" target="_blank" rel="noopener">YouTube</a></p></div></div>
       </div>
+
+      <!-- Front-of-house shot under the address tiles: the thing a visitor
+           actually walks into, next to the directions. Sits in the left column,
+           so it is sized for ~540px rather than the full content column.
+           Served from images/optimized/; see tools/README.md. -->
+      <figure class="photo-figure">
+        <picture>
+          <source type="image/webp" srcset="images/optimized/reception-lobby-400.webp 400w, images/optimized/reception-lobby-640.webp 640w, images/optimized/reception-lobby-900.webp 900w, images/optimized/reception-lobby-1280.webp 1280w" sizes="(max-width:900px) calc(100vw - 56px), 540px">
+          <img src="images/optimized/reception-lobby-640.jpg" srcset="images/optimized/reception-lobby-400.jpg 400w, images/optimized/reception-lobby-640.jpg 640w, images/optimized/reception-lobby-900.jpg 900w, images/optimized/reception-lobby-1280.jpg 1280w"
+               sizes="(max-width:900px) calc(100vw - 56px), 540px"
+               width="1280" height="960" alt="Reception desk with school signage and seating" loading="lazy" decoding="async">
+        </picture>
+        <figcaption>Reception<small>Where visitors are received</small></figcaption>
+      </figure>
     </div>
     <div class="form-card">
       <h3 style="margin-bottom:6px;">Send Us A Message</h3>
@@ -159,7 +178,11 @@
     <div class="footer-grid">
       <div>
         <div class="fbrand">
-          <img src="images/logo.png" alt="Max The Gurukul logo">
+          <picture>
+            <source type="image/webp" srcset="images/optimized/logo-240.webp 240w, images/optimized/logo-480.webp 480w" sizes="250px">
+            <img src="images/optimized/logo-320.png" srcset="images/optimized/logo-240.png 240w, images/optimized/logo-320.png 320w, images/optimized/logo-480.png 480w" sizes="250px"
+                 width="250" height="167" alt="Max The Gurukul logo" decoding="async" loading="lazy">
+          </picture>
         </div>
         <p>International education with traditional values — a modern Gurukul nurturing NDA, Sainik School and competitive-exam aspirants alongside strong character and discipline.</p>
       </div>
@@ -204,6 +227,7 @@
   </div>
 </footer>
 <script src="js/script.js"></script>
+<script src="js/chatbot.js"></script>
 <script src="js/notifications.js"></script>
 </body>
 </html>

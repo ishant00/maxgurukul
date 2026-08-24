@@ -5,8 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gallery | Max The Gurukul, Karnal</title>
 <meta name="description" content="A gallery of photos from Max The Gurukul.">
-<link rel="icon" href="images/logo.png">
+<link rel="icon" type="image/png" href="images/favicon.png">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/chatbot.css">
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -29,7 +30,11 @@
 <header class="site-header">
   <div class="nav-row wrap">
     <a href="index.html" class="brand">
-      <img src="images/logo.png" alt="Max The Gurukul logo">
+      <picture>
+        <source type="image/webp" srcset="images/optimized/logo-160.webp 160w, images/optimized/logo-320.webp 320w, images/optimized/logo-480.webp 480w" sizes="122px">
+        <img src="images/optimized/logo-160.png" srcset="images/optimized/logo-160.png 160w, images/optimized/logo-320.png 320w, images/optimized/logo-480.png 480w" sizes="122px"
+             width="480" height="320" alt="Max The Gurukul logo" decoding="async">
+      </picture>
       <span class="brand-text">
         <span>The Future Begins Here</span>
         <span>MAX THE GURUKUL</span>
@@ -112,15 +117,299 @@
   </div>
 </section>
 
-<section>
+<!-- Photos are served from images/optimized/, never from the camera originals in
+     images/ - see tools/README.md. Each <picture> offers WebP with a JPEG
+     fallback across four widths (five for the wides), so a phone is never sent a
+     desktop-sized file and no browser is sent a 24-megapixel original.
+
+     Only the opening row is eager. Everything below it is loading="lazy", which
+     is why the page is split into orientation-grouped sections instead of one
+     long grid: in a single grid the browser considers almost every tile "near
+     the viewport" and fetches it immediately, so lazy loading never engages.
+     Grouping by orientation also keeps rows uniform, so object-fit:cover never
+     has to discard half a photograph. -->
+
+<section aria-labelledby="gal-academics">
   <div class="wrap">
-    <div class="gallery-grid">
-      <div class="gallery-tile wide tall g2"><span>Campus View</span></div>
-      <div class="gallery-tile g3"><span>Sports Day</span></div>
-      <div class="gallery-tile"><span>Morning Assembly</span></div>
-      <div class="gallery-tile tall"><span>Classroom</span></div>
-      <div class="gallery-tile g2"><span>Hawan</span></div>
-      <div class="gallery-tile wide g3"><span>Annual Day</span></div>
+    <div class="section-head">
+      <span class="eyebrow">Inside the Classroom</span>
+      <h2 id="gal-academics">Academics</h2>
+      <div class="stripe"><span class="b1"></span><span class="b2"></span><span class="b3"></span></div>
+    </div>
+    <p class="section-intro">Air-conditioned smart classrooms, daily doubt classes, and faculty who teach from the board as readily as from the screen.</p>
+    <div class="photo-gallery portrait-set">
+      <figure>
+        <picture>
+          <source type="image/webp" srcset="images/optimized/smart-classroom-lesson-400.webp 400w, images/optimized/smart-classroom-lesson-640.webp 640w, images/optimized/smart-classroom-lesson-900.webp 900w, images/optimized/smart-classroom-lesson-1280.webp 1280w" sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 96px) / 3), 361px">
+          <img src="images/optimized/smart-classroom-lesson-640.jpg" srcset="images/optimized/smart-classroom-lesson-400.jpg 400w, images/optimized/smart-classroom-lesson-640.jpg 640w, images/optimized/smart-classroom-lesson-900.jpg 900w, images/optimized/smart-classroom-lesson-1280.jpg 1280w"
+               sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 96px) / 3), 361px"
+               width="1280" height="1707" alt="Students at their desks facing an interactive smart board while a teacher presents" loading="eager" fetchpriority="high" decoding="async">
+        </picture>
+        <figcaption>Smart Classrooms<small>Interactive boards in every room</small></figcaption>
+      </figure>
+      <figure>
+        <picture>
+          <source type="image/webp" srcset="images/optimized/classroom-smartboard-lesson-400.webp 400w, images/optimized/classroom-smartboard-lesson-640.webp 640w, images/optimized/classroom-smartboard-lesson-900.webp 900w, images/optimized/classroom-smartboard-lesson-1280.webp 1280w" sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 96px) / 3), 361px">
+          <img src="images/optimized/classroom-smartboard-lesson-640.jpg" srcset="images/optimized/classroom-smartboard-lesson-400.jpg 400w, images/optimized/classroom-smartboard-lesson-640.jpg 640w, images/optimized/classroom-smartboard-lesson-900.jpg 900w, images/optimized/classroom-smartboard-lesson-1280.jpg 1280w"
+               sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 96px) / 3), 361px"
+               width="1280" height="1707" alt="A lesson in progress on the classroom smart display" loading="eager" fetchpriority="high" decoding="async">
+        </picture>
+        <figcaption>Digital Lessons<small>Curriculum on screen</small></figcaption>
+      </figure>
+      <figure>
+        <picture>
+          <source type="image/webp" srcset="images/optimized/teacher-at-blackboard-400.webp 400w, images/optimized/teacher-at-blackboard-640.webp 640w, images/optimized/teacher-at-blackboard-900.webp 900w, images/optimized/teacher-at-blackboard-1280.webp 1280w" sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 96px) / 3), 361px">
+          <img src="images/optimized/teacher-at-blackboard-640.jpg" srcset="images/optimized/teacher-at-blackboard-400.jpg 400w, images/optimized/teacher-at-blackboard-640.jpg 640w, images/optimized/teacher-at-blackboard-900.jpg 900w, images/optimized/teacher-at-blackboard-1280.jpg 1280w"
+               sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 96px) / 3), 361px"
+               width="1280" height="1707" alt="A teacher writing on the green board while the class works" loading="eager" fetchpriority="high" decoding="async">
+        </picture>
+        <figcaption>Teaching Faculty<small>Board work, step by step</small></figcaption>
+      </figure>
+      <figure>
+        <picture>
+          <source type="image/webp" srcset="images/optimized/classroom-rows-400.webp 400w, images/optimized/classroom-rows-640.webp 640w, images/optimized/classroom-rows-900.webp 900w, images/optimized/classroom-rows-1280.webp 1280w" sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 96px) / 3), 361px">
+          <img src="images/optimized/classroom-rows-640.jpg" srcset="images/optimized/classroom-rows-400.jpg 400w, images/optimized/classroom-rows-640.jpg 640w, images/optimized/classroom-rows-900.jpg 900w, images/optimized/classroom-rows-1280.jpg 1280w"
+               sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 96px) / 3), 361px"
+               width="1280" height="1707" alt="An empty classroom with rows of green and orange desks and a smart display" loading="lazy" decoding="async">
+        </picture>
+        <figcaption>Classroom Setup<small>Air-conditioned, fully seated</small></figcaption>
+      </figure>
+      <figure>
+        <picture>
+          <source type="image/webp" srcset="images/optimized/classroom-ac-block-400.webp 400w, images/optimized/classroom-ac-block-640.webp 640w, images/optimized/classroom-ac-block-900.webp 900w, images/optimized/classroom-ac-block-1280.webp 1280w" sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 96px) / 3), 361px">
+          <img src="images/optimized/classroom-ac-block-640.jpg" srcset="images/optimized/classroom-ac-block-400.jpg 400w, images/optimized/classroom-ac-block-640.jpg 640w, images/optimized/classroom-ac-block-900.jpg 900w, images/optimized/classroom-ac-block-1280.jpg 1280w"
+               sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 96px) / 3), 361px"
+               width="1280" height="1707" alt="A classroom in session with a wall-mounted air conditioning unit" loading="lazy" decoding="async">
+        </picture>
+        <figcaption>Fully AC Campus<small>Climate control in every block</small></figcaption>
+      </figure>
+      <figure>
+        <picture>
+          <source type="image/webp" srcset="images/optimized/doubt-class-close-up-400.webp 400w, images/optimized/doubt-class-close-up-640.webp 640w, images/optimized/doubt-class-close-up-900.webp 900w, images/optimized/doubt-class-close-up-1280.webp 1280w" sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 96px) / 3), 361px">
+          <img src="images/optimized/doubt-class-close-up-640.jpg" srcset="images/optimized/doubt-class-close-up-400.jpg 400w, images/optimized/doubt-class-close-up-640.jpg 640w, images/optimized/doubt-class-close-up-900.jpg 900w, images/optimized/doubt-class-close-up-1280.jpg 1280w"
+               sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 96px) / 3), 361px"
+               width="1280" height="1707" alt="A small group of students at the board during a doubt-clearing class" loading="lazy" decoding="async">
+        </picture>
+        <figcaption>Doubt Classes<small>Small groups, daily</small></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt" aria-labelledby="gal-labs">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Practical Learning</span>
+      <h2 id="gal-labs">Laboratories &amp; Library</h2>
+      <div class="stripe"><span class="b1"></span><span class="b2"></span><span class="b3"></span></div>
+    </div>
+    <p class="section-intro">Fully equipped Physics, Chemistry and Biology labs, and a quiet library built around individual study.</p>
+
+    <div class="facility-group" aria-labelledby="gal-labs-head">
+      <div class="group-head">
+        <h3 id="gal-labs-head">Science Laboratories</h3>
+        <p>Demonstrations at the front bench, then hands-on apparatus for every student.</p>
+      </div>
+      <div class="photo-gallery wide-set">
+        <figure>
+          <picture>
+            <source type="image/webp" srcset="images/optimized/science-lab-experiment-400.webp 400w, images/optimized/science-lab-experiment-640.webp 640w, images/optimized/science-lab-experiment-900.webp 900w, images/optimized/science-lab-experiment-1280.webp 1280w, images/optimized/science-lab-experiment-1800.webp 1800w" sizes="(max-width:760px) calc(100vw - 56px), (max-width:1180px) calc((100vw - 76px) / 2), 552px">
+            <img src="images/optimized/science-lab-experiment-640.jpg" srcset="images/optimized/science-lab-experiment-400.jpg 400w, images/optimized/science-lab-experiment-640.jpg 640w, images/optimized/science-lab-experiment-900.jpg 900w, images/optimized/science-lab-experiment-1280.jpg 1280w, images/optimized/science-lab-experiment-1800.jpg 1800w"
+                 sizes="(max-width:760px) calc(100vw - 56px), (max-width:1180px) calc((100vw - 76px) / 2), 552px"
+                 width="1800" height="1350" alt="Students gathered around a teacher demonstrating an experiment with test tubes" loading="lazy" decoding="async">
+          </picture>
+          <figcaption>Science Laboratory<small>Demonstration and practical work</small></figcaption>
+        </figure>
+        <figure>
+          <picture>
+            <source type="image/webp" srcset="images/optimized/science-lab-wide-400.webp 400w, images/optimized/science-lab-wide-640.webp 640w, images/optimized/science-lab-wide-900.webp 900w, images/optimized/science-lab-wide-1280.webp 1280w, images/optimized/science-lab-wide-1800.webp 1800w" sizes="(max-width:760px) calc(100vw - 56px), (max-width:1180px) calc((100vw - 76px) / 2), 552px">
+            <img src="images/optimized/science-lab-wide-640.jpg" srcset="images/optimized/science-lab-wide-400.jpg 400w, images/optimized/science-lab-wide-640.jpg 640w, images/optimized/science-lab-wide-900.jpg 900w, images/optimized/science-lab-wide-1280.jpg 1280w, images/optimized/science-lab-wide-1800.jpg 1800w"
+                 sizes="(max-width:760px) calc(100vw - 56px), (max-width:1180px) calc((100vw - 76px) / 2), 552px"
+                 width="1800" height="1350" alt="The full width of the science laboratory with students along the bench" loading="lazy" decoding="async">
+          </picture>
+          <figcaption>Lab Benches<small>Physics, Chemistry and Biology</small></figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="facility-group" aria-labelledby="gal-library-head">
+      <div class="group-head">
+        <h3 id="gal-library-head">Practicals &amp; Reading</h3>
+        <p>Bench work in the labs, and a library laid out for uninterrupted study.</p>
+      </div>
+      <div class="photo-gallery portrait-set">
+        <figure>
+          <picture>
+            <source type="image/webp" srcset="images/optimized/chemistry-lab-bench-400.webp 400w, images/optimized/chemistry-lab-bench-640.webp 640w, images/optimized/chemistry-lab-bench-900.webp 900w, images/optimized/chemistry-lab-bench-1280.webp 1280w" sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 96px) / 3), 361px">
+            <img src="images/optimized/chemistry-lab-bench-640.jpg" srcset="images/optimized/chemistry-lab-bench-400.jpg 400w, images/optimized/chemistry-lab-bench-640.jpg 640w, images/optimized/chemistry-lab-bench-900.jpg 900w, images/optimized/chemistry-lab-bench-1280.jpg 1280w"
+                 sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 96px) / 3), 361px"
+                 width="1280" height="1707" alt="Students working at laboratory benches fitted with stands and sinks" loading="lazy" decoding="async">
+          </picture>
+          <figcaption>Practical Sessions<small>Hands-on apparatus</small></figcaption>
+        </figure>
+        <figure>
+          <picture>
+            <source type="image/webp" srcset="images/optimized/library-study-carrels-400.webp 400w, images/optimized/library-study-carrels-640.webp 640w, images/optimized/library-study-carrels-900.webp 900w, images/optimized/library-study-carrels-1280.webp 1280w" sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 96px) / 3), 361px">
+            <img src="images/optimized/library-study-carrels-640.jpg" srcset="images/optimized/library-study-carrels-400.jpg 400w, images/optimized/library-study-carrels-640.jpg 640w, images/optimized/library-study-carrels-900.jpg 900w, images/optimized/library-study-carrels-1280.jpg 1280w"
+                 sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 96px) / 3), 361px"
+                 width="1280" height="1707" alt="Students reading at individual wooden study carrels in the library" loading="lazy" decoding="async">
+          </picture>
+          <figcaption>Library<small>Individual study carrels</small></figcaption>
+        </figure>
+        <figure>
+          <picture>
+            <source type="image/webp" srcset="images/optimized/library-reading-400.webp 400w, images/optimized/library-reading-640.webp 640w, images/optimized/library-reading-900.webp 900w, images/optimized/library-reading-1280.webp 1280w" sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 96px) / 3), 361px">
+            <img src="images/optimized/library-reading-640.jpg" srcset="images/optimized/library-reading-400.jpg 400w, images/optimized/library-reading-640.jpg 640w, images/optimized/library-reading-900.jpg 900w, images/optimized/library-reading-1280.jpg 1280w"
+                 sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 96px) / 3), 361px"
+                 width="1280" height="1707" alt="The school library with shelving and reading carrels" loading="lazy" decoding="async">
+          </picture>
+          <figcaption>Reading Room<small>Reference and reading stock</small></figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="gal-sports">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Thirteen Coached Games</span>
+      <h2 id="gal-sports">Sports &amp; Physical Training</h2>
+      <div class="stripe"><span class="b1"></span><span class="b2"></span><span class="b3"></span></div>
+    </div>
+    <p class="section-intro">Professional coaching across thirteen disciplines, from archery and martial arts to team sport on the multi-purpose court.</p>
+    <!-- The archery, martial arts and volleyball-team frames were shot 9:16, so a
+         3/4 tile trims about a quarter of their height; --pos moves the crop onto
+         the subject instead of splitting the difference. -->
+    <div class="photo-gallery portrait-set">
+      <figure style="--pos:center 38%">
+        <picture>
+          <source type="image/webp" srcset="images/optimized/archery-aim-400.webp 400w, images/optimized/archery-aim-640.webp 640w, images/optimized/archery-aim-900.webp 900w, images/optimized/archery-aim-1280.webp 1280w" sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 96px) / 3), 361px">
+          <img src="images/optimized/archery-aim-640.jpg" srcset="images/optimized/archery-aim-400.jpg 400w, images/optimized/archery-aim-640.jpg 640w, images/optimized/archery-aim-900.jpg 900w, images/optimized/archery-aim-1280.jpg 1280w"
+               sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 96px) / 3), 361px"
+               width="1280" height="2276" alt="A student at full draw with a bow in front of the academic block" loading="lazy" decoding="async">
+        </picture>
+        <figcaption>Archery<small>One of thirteen coached games</small></figcaption>
+      </figure>
+      <figure style="--pos:center 45%">
+        <picture>
+          <source type="image/webp" srcset="images/optimized/martial-arts-training-400.webp 400w, images/optimized/martial-arts-training-640.webp 640w, images/optimized/martial-arts-training-900.webp 900w, images/optimized/martial-arts-training-1280.webp 1280w" sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 96px) / 3), 361px">
+          <img src="images/optimized/martial-arts-training-640.jpg" srcset="images/optimized/martial-arts-training-400.jpg 400w, images/optimized/martial-arts-training-640.jpg 640w, images/optimized/martial-arts-training-900.jpg 900w, images/optimized/martial-arts-training-1280.jpg 1280w"
+               sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 96px) / 3), 361px"
+               width="1280" height="2276" alt="Two students sparring in protective gear on mats in the indoor hall" loading="lazy" decoding="async">
+        </picture>
+        <figcaption>Martial Arts<small>Indoor training hall</small></figcaption>
+      </figure>
+      <figure>
+        <picture>
+          <source type="image/webp" srcset="images/optimized/volleyball-match-400.webp 400w, images/optimized/volleyball-match-640.webp 640w, images/optimized/volleyball-match-900.webp 900w, images/optimized/volleyball-match-1280.webp 1280w" sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 96px) / 3), 361px">
+          <img src="images/optimized/volleyball-match-640.jpg" srcset="images/optimized/volleyball-match-400.jpg 400w, images/optimized/volleyball-match-640.jpg 640w, images/optimized/volleyball-match-900.jpg 900w, images/optimized/volleyball-match-1280.jpg 1280w"
+               sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 96px) / 3), 361px"
+               width="1280" height="1707" alt="A volleyball rally with the ball in the air and both sides of the net in frame" loading="lazy" decoding="async">
+        </picture>
+        <figcaption>Volleyball<small>Inter-house matches</small></figcaption>
+      </figure>
+      <figure style="--pos:center 55%">
+        <picture>
+          <source type="image/webp" srcset="images/optimized/volleyball-team-400.webp 400w, images/optimized/volleyball-team-640.webp 640w, images/optimized/volleyball-team-900.webp 900w, images/optimized/volleyball-team-1280.webp 1280w" sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 96px) / 3), 361px">
+          <img src="images/optimized/volleyball-team-640.jpg" srcset="images/optimized/volleyball-team-400.jpg 400w, images/optimized/volleyball-team-640.jpg 640w, images/optimized/volleyball-team-900.jpg 900w, images/optimized/volleyball-team-1280.jpg 1280w"
+               sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 96px) / 3), 361px"
+               width="1280" height="2273" alt="A volleyball team spread across the court during a match" loading="lazy" decoding="async">
+        </picture>
+        <figcaption>Team Play<small>Coached team sport</small></figcaption>
+      </figure>
+      <figure>
+        <picture>
+          <source type="image/webp" srcset="images/optimized/sports-ground-court-400.webp 400w, images/optimized/sports-ground-court-640.webp 640w, images/optimized/sports-ground-court-900.webp 900w, images/optimized/sports-ground-court-1280.webp 1280w" sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 96px) / 3), 361px">
+          <img src="images/optimized/sports-ground-court-640.jpg" srcset="images/optimized/sports-ground-court-400.jpg 400w, images/optimized/sports-ground-court-640.jpg 640w, images/optimized/sports-ground-court-900.jpg 900w, images/optimized/sports-ground-court-1280.jpg 1280w"
+               sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 96px) / 3), 361px"
+               width="1280" height="1707" alt="The outdoor multi-purpose court with school signage and palm trees" loading="lazy" decoding="async">
+        </picture>
+        <figcaption>Sports Ground<small>Multi-purpose court</small></figcaption>
+      </figure>
+      <figure>
+        <picture>
+          <source type="image/webp" srcset="images/optimized/games-training-ground-400.webp 400w, images/optimized/games-training-ground-640.webp 640w, images/optimized/games-training-ground-900.webp 900w, images/optimized/games-training-ground-1280.webp 1280w" sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 96px) / 3), 361px">
+          <img src="images/optimized/games-training-ground-640.jpg" srcset="images/optimized/games-training-ground-400.jpg 400w, images/optimized/games-training-ground-640.jpg 640w, images/optimized/games-training-ground-900.jpg 900w, images/optimized/games-training-ground-1280.jpg 1280w"
+               sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 96px) / 3), 361px"
+               width="1280" height="1707" alt="Students in team bibs on the training ground beside the fenced court" loading="lazy" decoding="async">
+        </picture>
+        <figcaption>Games Training<small>Daily professional coaching</small></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt" aria-labelledby="gal-campus">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Around The Gurukul</span>
+      <h2 id="gal-campus">Campus &amp; Residential Life</h2>
+      <div class="stripe"><span class="b1"></span><span class="b2"></span><span class="b3"></span></div>
+    </div>
+    <p class="section-intro">A fully air-conditioned campus and hostel, from the reception desk to the residential wings.</p>
+
+    <div class="facility-group" aria-labelledby="gal-campus-head">
+      <div class="group-head">
+        <h3 id="gal-campus-head">Academic Block</h3>
+        <p>Naturally lit corridors connecting classrooms, labs and the library.</p>
+      </div>
+      <div class="photo-gallery wide-set">
+        <figure>
+          <picture>
+            <source type="image/webp" srcset="images/optimized/campus-corridor-wide-400.webp 400w, images/optimized/campus-corridor-wide-640.webp 640w, images/optimized/campus-corridor-wide-900.webp 900w, images/optimized/campus-corridor-wide-1280.webp 1280w, images/optimized/campus-corridor-wide-1800.webp 1800w" sizes="(max-width:760px) calc(100vw - 56px), (max-width:1180px) calc((100vw - 76px) / 2), 552px">
+            <img src="images/optimized/campus-corridor-wide-640.jpg" srcset="images/optimized/campus-corridor-wide-400.jpg 400w, images/optimized/campus-corridor-wide-640.jpg 640w, images/optimized/campus-corridor-wide-900.jpg 900w, images/optimized/campus-corridor-wide-1280.jpg 1280w, images/optimized/campus-corridor-wide-1800.jpg 1800w"
+                 sizes="(max-width:760px) calc(100vw - 56px), (max-width:1180px) calc((100vw - 76px) / 2), 552px"
+                 width="1800" height="1350" alt="A long checkerboard corridor lined with potted plants in daylight" loading="lazy" decoding="async">
+          </picture>
+          <figcaption>Academic Block<small>Naturally lit corridors</small></figcaption>
+        </figure>
+        <figure>
+          <picture>
+            <source type="image/webp" srcset="images/optimized/reception-lobby-400.webp 400w, images/optimized/reception-lobby-640.webp 640w, images/optimized/reception-lobby-900.webp 900w, images/optimized/reception-lobby-1280.webp 1280w, images/optimized/reception-lobby-1800.webp 1800w" sizes="(max-width:760px) calc(100vw - 56px), (max-width:1180px) calc((100vw - 76px) / 2), 552px">
+            <img src="images/optimized/reception-lobby-640.jpg" srcset="images/optimized/reception-lobby-400.jpg 400w, images/optimized/reception-lobby-640.jpg 640w, images/optimized/reception-lobby-900.jpg 900w, images/optimized/reception-lobby-1280.jpg 1280w, images/optimized/reception-lobby-1800.jpg 1800w"
+                 sizes="(max-width:760px) calc(100vw - 56px), (max-width:1180px) calc((100vw - 76px) / 2), 552px"
+                 width="1800" height="1350" alt="The school reception desk with signage and seating" loading="lazy" decoding="async">
+          </picture>
+          <figcaption>Reception<small>Main visitor entrance</small></figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="facility-group" aria-labelledby="gal-hostel-head">
+      <div class="group-head">
+        <h3 id="gal-hostel-head">Hostel &amp; Corridors</h3>
+        <p>Air-conditioned residential wings with a bed, wardrobe and study space for every student.</p>
+      </div>
+      <div class="photo-gallery portrait-set">
+        <figure>
+          <picture>
+            <source type="image/webp" srcset="images/optimized/campus-corridor-400.webp 400w, images/optimized/campus-corridor-640.webp 640w, images/optimized/campus-corridor-900.webp 900w, images/optimized/campus-corridor-1280.webp 1280w" sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 96px) / 3), 361px">
+            <img src="images/optimized/campus-corridor-640.jpg" srcset="images/optimized/campus-corridor-400.jpg 400w, images/optimized/campus-corridor-640.jpg 640w, images/optimized/campus-corridor-900.jpg 900w, images/optimized/campus-corridor-1280.jpg 1280w"
+                 sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 96px) / 3), 361px"
+                 width="1280" height="1707" alt="A corridor looking down the academic block with air conditioning units along the wall" loading="lazy" decoding="async">
+          </picture>
+          <figcaption>Corridors<small>Connecting every block</small></figcaption>
+        </figure>
+        <figure>
+          <picture>
+            <source type="image/webp" srcset="images/optimized/hostel-dormitory-400.webp 400w, images/optimized/hostel-dormitory-640.webp 640w, images/optimized/hostel-dormitory-900.webp 900w, images/optimized/hostel-dormitory-1280.webp 1280w" sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 96px) / 3), 361px">
+            <img src="images/optimized/hostel-dormitory-640.jpg" srcset="images/optimized/hostel-dormitory-400.jpg 400w, images/optimized/hostel-dormitory-640.jpg 640w, images/optimized/hostel-dormitory-900.jpg 900w, images/optimized/hostel-dormitory-1280.jpg 1280w"
+                 sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 96px) / 3), 361px"
+                 width="1280" height="1707" alt="A hostel dormitory wing with made beds and study tables along one side" loading="lazy" decoding="async">
+          </picture>
+          <figcaption>Hostel<small>Fully air-conditioned</small></figcaption>
+        </figure>
+        <figure>
+          <picture>
+            <source type="image/webp" srcset="images/optimized/hostel-wing-400.webp 400w, images/optimized/hostel-wing-640.webp 640w, images/optimized/hostel-wing-900.webp 900w, images/optimized/hostel-wing-1280.webp 1280w" sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 96px) / 3), 361px">
+            <img src="images/optimized/hostel-wing-640.jpg" srcset="images/optimized/hostel-wing-400.jpg 400w, images/optimized/hostel-wing-640.jpg 640w, images/optimized/hostel-wing-900.jpg 900w, images/optimized/hostel-wing-1280.jpg 1280w"
+                 sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 96px) / 3), 361px"
+                 width="1280" height="1707" alt="Bunk beds and wardrobes along a hostel wing" loading="lazy" decoding="async">
+          </picture>
+          <figcaption>Residential Wing<small>Beds, wardrobes, storage</small></figcaption>
+        </figure>
+      </div>
     </div>
   </div>
 </section>
@@ -131,7 +420,11 @@
     <div class="footer-grid">
       <div>
         <div class="fbrand">
-          <img src="images/logo.png" alt="Max The Gurukul logo">
+          <picture>
+            <source type="image/webp" srcset="images/optimized/logo-240.webp 240w, images/optimized/logo-480.webp 480w" sizes="250px">
+            <img src="images/optimized/logo-320.png" srcset="images/optimized/logo-240.png 240w, images/optimized/logo-320.png 320w, images/optimized/logo-480.png 480w" sizes="250px"
+                 width="250" height="167" alt="Max The Gurukul logo" decoding="async" loading="lazy">
+          </picture>
         </div>
         <p>International education with traditional values — a modern Gurukul nurturing NDA, Sainik School and competitive-exam aspirants alongside strong character and discipline.</p>
       </div>
@@ -176,6 +469,7 @@
   </div>
 </footer>
 <script src="js/script.js"></script>
+<script src="js/chatbot.js"></script>
 <script src="js/notifications.js"></script>
 </body>
 </html>

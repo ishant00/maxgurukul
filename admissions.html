@@ -5,8 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Admissions | Max The Gurukul, Karnal</title>
 <meta name="description" content="Admissions open at Max The Gurukul — scholarship plan, fee structure, requisites and procedure, and enquiry form.">
-<link rel="icon" href="images/logo.png">
+<link rel="icon" type="image/png" href="images/favicon.png">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/chatbot.css">
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -29,7 +30,11 @@
 <header class="site-header">
   <div class="nav-row wrap">
     <a href="index.html" class="brand">
-      <img src="images/logo.png" alt="Max The Gurukul logo">
+      <picture>
+        <source type="image/webp" srcset="images/optimized/logo-160.webp 160w, images/optimized/logo-320.webp 320w, images/optimized/logo-480.webp 480w" sizes="122px">
+        <img src="images/optimized/logo-160.png" srcset="images/optimized/logo-160.png 160w, images/optimized/logo-320.png 320w, images/optimized/logo-480.png 480w" sizes="122px"
+             width="480" height="320" alt="Max The Gurukul logo" decoding="async">
+      </picture>
       <span class="brand-text">
         <span>The Future Begins Here</span>
         <span>MAX THE GURUKUL</span>
@@ -150,7 +155,7 @@
 </section>
 
 <section>
-  <div class="wrap" style="display:grid; grid-template-columns:1fr 1fr; gap:50px;">
+  <div class="wrap split-2" style="display:grid; grid-template-columns:1fr 1fr; gap:50px;">
     <div>
       <span class="eyebrow">How To Join</span>
       <h2 style="margin:10px 0 16px;">Requisites & Procedure</h2>
@@ -204,7 +209,11 @@
     <div class="footer-grid">
       <div>
         <div class="fbrand">
-          <img src="images/logo.png" alt="Max The Gurukul logo">
+          <picture>
+            <source type="image/webp" srcset="images/optimized/logo-240.webp 240w, images/optimized/logo-480.webp 480w" sizes="250px">
+            <img src="images/optimized/logo-320.png" srcset="images/optimized/logo-240.png 240w, images/optimized/logo-320.png 320w, images/optimized/logo-480.png 480w" sizes="250px"
+                 width="250" height="167" alt="Max The Gurukul logo" decoding="async" loading="lazy">
+          </picture>
         </div>
         <p>International education with traditional values — a modern Gurukul nurturing NDA, Sainik School and competitive-exam aspirants alongside strong character and discipline.</p>
       </div>
@@ -249,6 +258,7 @@
   </div>
 </footer>
 <script src="js/script.js"></script>
+<script src="js/chatbot.js"></script>
 <script src="js/notifications.js"></script>
 </body>
 </html>

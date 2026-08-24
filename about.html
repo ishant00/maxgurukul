@@ -5,8 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About Us | Max The Gurukul, Karnal</title>
 <meta name="description" content="Philosophy, mission, vision, chairman & principal messages, infrastructure and mandatory disclosure for Max The Gurukul.">
-<link rel="icon" href="images/logo.png">
+<link rel="icon" type="image/png" href="images/favicon.png">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/chatbot.css">
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -29,7 +30,11 @@
 <header class="site-header">
   <div class="nav-row wrap">
     <a href="index.html" class="brand">
-      <img src="images/logo.png" alt="Max The Gurukul logo">
+      <picture>
+        <source type="image/webp" srcset="images/optimized/logo-160.webp 160w, images/optimized/logo-320.webp 320w, images/optimized/logo-480.webp 480w" sizes="122px">
+        <img src="images/optimized/logo-160.png" srcset="images/optimized/logo-160.png 160w, images/optimized/logo-320.png 320w, images/optimized/logo-480.png 480w" sizes="122px"
+             width="480" height="320" alt="Max The Gurukul logo" decoding="async">
+      </picture>
       <span class="brand-text">
         <span>The Future Begins Here</span>
         <span>MAX THE GURUKUL</span>
@@ -152,7 +157,7 @@
         <h2 style="margin:10px 0 16px;">Chairman's Message</h2>
         <div class="stripe" style="margin-bottom:20px;"><span class="b1"></span><span class="b2"></span><span class="b3"></span></div>
         <div class="message-block">
-          <div class="portrait">MB</div>
+          <div class="portrait"><img src="images/Faculty%20images/Chairman.jpg" alt="CA Mukesh Bansal, Chairman of Max The Gurukul" loading="lazy"></div>
           <div>
             <strong class="leader-name">CA Mukesh Bansal</strong>
             <span class="role">Chairman, Max The Gurukul</span>
@@ -166,7 +171,7 @@
         <h2 style="margin:10px 0 16px;">Principal's Message</h2>
         <div class="stripe" style="margin-bottom:20px;"><span class="b1"></span><span class="b2"></span><span class="b3"></span></div>
         <div class="message-block">
-          <div class="portrait">HB</div>
+          <div class="portrait"><img src="images/Faculty%20images/principalnew.jpeg" alt="Dr. Harish Bhardwaj, Principal of Max The Gurukul" loading="lazy"></div>
           <div>
             <strong class="leader-name">Dr. Harish Bhardwaj</strong>
             <span class="role">Principal, Max The Gurukul</span>
@@ -180,7 +185,7 @@
         <h2 style="margin:10px 0 16px;">Our Mentor</h2>
         <div class="stripe" style="margin-bottom:20px;"><span class="b1"></span><span class="b2"></span><span class="b3"></span></div>
         <div class="message-block">
-          <div class="portrait">RM</div>
+          <div class="portrait"><img src="images/Faculty%20images/mentor.jpg" alt="Mr. Raghbir Singh Mann, Mentor of Max The Gurukul" loading="lazy"></div>
           <div>
             <strong class="leader-name">Mr. Raghbir Singh Mann</strong>
             <span class="role">Mentor, Max The Gurukul</span>
@@ -198,6 +203,41 @@
           <div class="tile"><div class="ico"><svg viewBox="0 0 24 24"><path d="M4 19h16M6 19V9l6-4 6 4v10M9 19v-6h6v6"/></svg></div><div><h4>AC Campus & Hostel</h4><p>Comfortable, climate-controlled learning and living spaces.</p></div></div>
           <div class="tile"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div><div><h4>Smart Classrooms</h4><p>Technology-integrated teaching for every grade.</p></div></div>
           <div class="tile"><div class="ico"><svg viewBox="0 0 24 24"><path d="M4 4h16v14H4z"/><path d="M4 8h16"/></svg></div><div><h4>Labs & Library</h4><p>Science, computer labs and a well-stocked library.</p></div></div>
+        </div>
+
+        <!-- One photograph per tile above: the corridor for the AC campus, a
+             classroom for the smart displays, the lab bench for labs. These are
+             different frames from the ones on infrastructure.html rather than the
+             same files reused. All 3:4, so the row is uniform and object-fit has
+             nothing to discard. Served from images/optimized/; see tools/README.md. -->
+        <div class="photo-gallery portrait-set" style="margin-top:24px;">
+          <figure>
+            <picture>
+              <source type="image/webp" srcset="images/optimized/campus-corridor-400.webp 400w, images/optimized/campus-corridor-640.webp 640w, images/optimized/campus-corridor-900.webp 900w, images/optimized/campus-corridor-1280.webp 1280w" sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:980px) calc((100vw - 96px) / 3), (max-width:1180px) calc((100vw - 396px) / 3), 261px">
+              <img src="images/optimized/campus-corridor-640.jpg" srcset="images/optimized/campus-corridor-400.jpg 400w, images/optimized/campus-corridor-640.jpg 640w, images/optimized/campus-corridor-900.jpg 900w, images/optimized/campus-corridor-1280.jpg 1280w"
+                   sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:980px) calc((100vw - 96px) / 3), (max-width:1180px) calc((100vw - 396px) / 3), 261px"
+                   width="1280" height="1707" alt="Corridor down the academic block with wall-mounted air conditioning units" loading="lazy" decoding="async">
+            </picture>
+            <figcaption>AC Campus<small>Corridors and classrooms</small></figcaption>
+          </figure>
+          <figure>
+            <picture>
+              <source type="image/webp" srcset="images/optimized/classroom-rows-400.webp 400w, images/optimized/classroom-rows-640.webp 640w, images/optimized/classroom-rows-900.webp 900w, images/optimized/classroom-rows-1280.webp 1280w" sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:980px) calc((100vw - 96px) / 3), (max-width:1180px) calc((100vw - 396px) / 3), 261px">
+              <img src="images/optimized/classroom-rows-640.jpg" srcset="images/optimized/classroom-rows-400.jpg 400w, images/optimized/classroom-rows-640.jpg 640w, images/optimized/classroom-rows-900.jpg 900w, images/optimized/classroom-rows-1280.jpg 1280w"
+                   sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:980px) calc((100vw - 96px) / 3), (max-width:1180px) calc((100vw - 396px) / 3), 261px"
+                   width="1280" height="1707" alt="Classroom with rows of desks facing a smart display" loading="lazy" decoding="async">
+            </picture>
+            <figcaption>Smart Classrooms<small>A display in every room</small></figcaption>
+          </figure>
+          <figure>
+            <picture>
+              <source type="image/webp" srcset="images/optimized/chemistry-lab-bench-400.webp 400w, images/optimized/chemistry-lab-bench-640.webp 640w, images/optimized/chemistry-lab-bench-900.webp 900w, images/optimized/chemistry-lab-bench-1280.webp 1280w" sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:980px) calc((100vw - 96px) / 3), (max-width:1180px) calc((100vw - 396px) / 3), 261px">
+              <img src="images/optimized/chemistry-lab-bench-640.jpg" srcset="images/optimized/chemistry-lab-bench-400.jpg 400w, images/optimized/chemistry-lab-bench-640.jpg 640w, images/optimized/chemistry-lab-bench-900.jpg 900w, images/optimized/chemistry-lab-bench-1280.jpg 1280w"
+                   sizes="(max-width:480px) calc(100vw - 56px), (max-width:760px) calc((100vw - 70px) / 2), (max-width:980px) calc((100vw - 96px) / 3), (max-width:1180px) calc((100vw - 396px) / 3), 261px"
+                   width="1280" height="1707" alt="Students working at chemistry lab benches" loading="lazy" decoding="async">
+            </picture>
+            <figcaption>Labs &amp; Library<small>Physics, Chemistry, Biology</small></figcaption>
+          </figure>
         </div>
       </div>
 
@@ -225,7 +265,11 @@
     <div class="footer-grid">
       <div>
         <div class="fbrand">
-          <img src="images/logo.png" alt="Max The Gurukul logo">
+          <picture>
+            <source type="image/webp" srcset="images/optimized/logo-240.webp 240w, images/optimized/logo-480.webp 480w" sizes="250px">
+            <img src="images/optimized/logo-320.png" srcset="images/optimized/logo-240.png 240w, images/optimized/logo-320.png 320w, images/optimized/logo-480.png 480w" sizes="250px"
+                 width="250" height="167" alt="Max The Gurukul logo" decoding="async" loading="lazy">
+          </picture>
         </div>
         <p>International education with traditional values — a modern Gurukul nurturing NDA, Sainik School and competitive-exam aspirants alongside strong character and discipline.</p>
       </div>
@@ -270,6 +314,7 @@
   </div>
 </footer>
 <script src="js/script.js"></script>
+<script src="js/chatbot.js"></script>
 <script src="js/notifications.js"></script>
 </body>
 </html>

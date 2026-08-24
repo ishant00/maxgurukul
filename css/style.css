@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /* ============================================================
    MAX THE GURUKUL — stylesheet
-   Tokens: Navy (institution) / Gold (honour) / Orange (energy)
+   Tokens: Crest Blue (institution) / Gold (honour) / Orange (energy)
    Signature: the "Parade Stripe" — a three-band rule drawn from
    the sash in the school crest, used to mark every section break.
    ============================================================ */
@@ -9,17 +9,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
 
 :root{
-  --navy:      #10366e;
-  --navy-deep: #082247;
-  --navy-mid:  #1c4d8f;
-  --gold:      #d9a01c;
-  --gold-deep: #b3810e;
-  --orange:    #ef7d1a;
-  --cream:     #faf6ee;
+  /* Palette is sampled straight off the school crest: the bright royal blue of
+     the shield and wordmark, the signal orange of the laurel and the "g".
+     The old scheme leaned on near-black navy and a mustard gold over a beige
+     page — institutional, but heavy. These are the same three hues pitched
+     several stops brighter so the site reads like a school, not a ministry. */
+  --blue:       #1568d6;  /* crest blue — the primary */
+  --blue-deep:  #0b3f8f;  /* depth without going black */
+  --blue-mid:   #2f83ea;
+  --blue-soft:  #e8f1fd;  /* tinted panel fill */
+
+  /* The original token names are kept and simply re-pointed at the brighter
+     hues, so all 14 pages inherit the new palette without editing 200+ call
+     sites. --navy* now means "brand blue", not "navy". */
+  --navy:      var(--blue);
+  --navy-deep: var(--blue-deep);
+  --navy-mid:  var(--blue-mid);
+  --gold:      #ffc21f;
+  --gold-deep: #c2560a;  /* eyebrow ink — the old #b3810e failed contrast on light */
+  --orange:    #f9861a;  /* crest orange */
+  --cream:     #eff6ff;  /* page ground: a cool blue-white, was beige #faf6ee */
   --paper:     #ffffff;
-  --ink:       #1a1d24;
-  --ink-soft:  #4a5063;
-  --line:      #e4dfd2;
+  --ink:       #17202e;
+  --ink-soft:  #4d5a6e;
+  --line:      #d3e3f8;  /* hairlines now tint blue, was beige */
   --radius:    8px;
   --max-w:     1180px;
 }
@@ -99,36 +112,75 @@ section{ padding:74px 0; }
 
 /* ---------- Buttons ---------- */
 .btn{
+  position:relative; overflow:hidden;
   display:inline-flex; align-items:center; gap:10px;
   font-family:'Oswald',sans-serif; font-weight:600;
   letter-spacing:.06em; text-transform:uppercase; font-size:.82rem;
   padding:14px 26px; border-radius:var(--radius); border:2px solid transparent;
-  cursor:pointer; transition:transform .15s ease, background .2s ease, color .2s ease;
+  cursor:pointer;
+  transition:transform .2s cubic-bezier(.2,.7,.3,1), background .2s ease,
+             color .2s ease, box-shadow .25s ease, border-color .2s ease;
 }
-.btn:hover{ transform:translateY(-2px); }
-.btn-primary{ background:var(--orange); color:#fff; }
-.btn-primary:hover{ background:#d76c0f; }
+/* Light sweeps across the face on hover — one shared gloss for every button. */
+.btn::after{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background:linear-gradient(115deg, transparent 40%, rgba(255,255,255,.28) 50%, transparent 60%);
+  transform:translateX(-110%);
+  transition:transform .6s cubic-bezier(.2,.7,.3,1);
+}
+.btn:hover::after{ transform:translateX(110%); }
+.btn > *{ position:relative; z-index:1; }
+.btn:hover{ transform:translateY(-3px); }
+.btn:active{ transform:translateY(-1px); }
+.btn-primary{ background:var(--orange); color:#fff; box-shadow:0 10px 22px -10px rgba(239,125,26,.65); }
+.btn-primary:hover{ background:#d76c0f; box-shadow:0 16px 30px -12px rgba(239,125,26,.75); }
 .btn-outline{ border-color:currentColor; background:transparent; }
+.btn-outline:hover{ box-shadow:0 10px 22px -12px rgba(8,34,71,.4); }
 .btn-outline.on-navy{ color:#fff; }
-.btn-gold{ background:var(--gold); color:var(--navy-deep); }
-.btn-gold:hover{ background:#c68f16; }
+.btn-gold{ background:var(--gold); color:var(--navy-deep); box-shadow:0 10px 22px -10px rgba(217,160,28,.7); }
+.btn-gold:hover{ background:#c68f16; box-shadow:0 16px 30px -12px rgba(217,160,28,.8); }
 
 /* ============== HEADER ============== */
 .topbar{
   background:var(--navy-deep); color:#cfd8ea; font-family:'Oswald',sans-serif;
   font-size:.78rem; letter-spacing:.03em;
 }
-.topbar .wrap{ display:flex; justify-content:space-between; align-items:center; padding:7px 28px; flex-wrap:wrap; gap:6px; }
+.topbar .wrap{ display:flex; justify-content:space-between; align-items:center; padding:4px 28px; flex-wrap:wrap; gap:6px; }
 .topbar a{ color:#cfd8ea; }
 .topbar .contact-bits{ display:flex; gap:22px; flex-wrap:wrap; }
-.topbar .socials{ display:flex; gap:14px; }
+.topbar .socials{ display:flex; gap:9px; align-items:center; }
 .topbar .socials a{
-  padding: 4px 12px;
-  border-radius: var(--radius);
-  background: var(--paper);
-  color: var(--navy-deep);
-  font-weight: 500;
+  display:inline-flex; align-items:center; justify-content:center;
+  width:30px; height:30px; padding:0;
+  border-radius:50%;
+  overflow:hidden; font-size:0; line-height:0;
+  background:rgba(255,255,255,.10);
+  border:1px solid rgba(255,255,255,.18);
+  color:#e6ecf8;
+  transition:background .22s ease, color .2s ease, border-color .22s ease, transform .2s ease;
 }
+.topbar .socials a:hover{ transform:translateY(-1px); color:#fff; border-color:transparent; }
+
+/* Brand glyphs are injected by js/script.js so all 14 pages share one source. */
+.social-ico{ width:17px; height:17px; flex:none; display:block; fill:currentColor; }
+
+/* Each network lights up in its own colour on hover — the icon is the cue,
+   the brand colour is the confirmation. */
+.topbar .socials a[data-social="instagram"]:hover{
+  background:linear-gradient(45deg,#f09433,#dc2743 55%,#bc1888);
+}
+.topbar .socials a[data-social="facebook"]:hover{ background:#1877f2; }
+.topbar .socials a[data-social="youtube"]:hover{ background:#ff0000; }
+.topbar .socials a[data-social="whatsapp"]:hover{ background:#25d366; }
+.topbar .socials a[data-social="x"]:hover{ background:#000; }
+.topbar .socials a[data-social="linkedin"]:hover{ background:#0a66c2; }
+
+.brand-bar{ background:var(--paper); border-bottom:1px solid var(--line); }
+.brand-row{
+  min-height:94px; padding:8px 28px;
+  display:flex; align-items:center; justify-content:space-between; gap:24px;
+}
+.brand-row > .btn{ flex:none; white-space:nowrap; padding:12px 22px; }
 
 header.site-header{
   background:var(--paper);
@@ -136,7 +188,7 @@ header.site-header{
   border-bottom:1px solid var(--line);
   box-shadow:0 2px 14px rgba(8,34,71,.05);
 }
-.nav-row{ display:flex; align-items:center; justify-content:space-between; padding:8px 20px; gap:18px; min-height:72px; }
+.nav-row{ display:flex; align-items:center; justify-content:center; padding:2px 20px; gap:18px; min-height:54px; }
 .brand{
   display:flex; align-items:center; gap:14px;
   padding:0;
@@ -148,13 +200,13 @@ nav.primary-nav{ flex:1; min-width:0; display:flex; justify-content:center; }
 .brand:hover{ background:transparent; transform:none; box-shadow:none; }
 .brand img{
   display:block;
-  width:100px;
-  max-width:100px;
+  width:122px;
+  max-width:122px;
   height:auto;
-  border-radius:18px;
-  background:#fff;
-  padding:6px;
-  box-shadow:0 12px 28px rgba(16,54,110,.12);
+  border-radius:0;
+  background:transparent;
+  padding:0;
+  box-shadow:none;
 }
 nav.primary-nav{
   flex:1;
@@ -166,7 +218,7 @@ nav.primary-nav > ul{
   min-width:0;
 }
 .brand .brand-text{
-  display:block; /* Make the brand text visible */
+  display:none;
 }
 .brand .brand-text span{
   display: block;
@@ -241,6 +293,7 @@ nav.primary-nav li.has-dropdown.open > a.nav-link::after {
 }
 .more-item{ display:none; position:relative; }
 .more-item .dropdown{ left:auto; right:0; min-width:240px; opacity:0; visibility:hidden; transform:translateY(6px); transition:opacity .16s ease, transform .16s ease, visibility .16s ease; }
+nav.primary-nav .more-item > .dropdown{ left:auto; right:0; }
 .more-item:hover .dropdown,
 .more-item.open .dropdown{
   opacity:1; visibility:visible; transform:translateY(0); pointer-events:auto;
@@ -383,77 +436,267 @@ body.nav-open{ overflow:hidden; }
 /* Drawer-only chrome — hidden on desktop, revealed in the mobile media query. */
 .drawer-cta, .drawer-contact{ display:none; }
 
-/* ============== HERO ============== */
+/* ============== HERO ==============
+   The campus itself carries this section. Three exterior photographs cross-fade
+   behind the copy on a 24s loop, each one drifting in scale so the frame never
+   sits still — a visitor should feel they are already standing at the gate.
+   Readability comes from a blue wash that is dense on the left, where the type
+   sits, and thins out to the right so the building stays legible as a building. */
 .hero{
-  position:relative; overflow:hidden;
-  background:
-    radial-gradient(circle at 85% 15%, rgba(217,160,28,.18), transparent 46%),
-    linear-gradient(160deg, var(--navy-deep), var(--navy) 62%, var(--navy-mid));
-  color:#fff; padding:96px 0 84px;
+  position:relative; isolation:isolate; overflow:hidden;
+  display:flex; align-items:center;
+  min-height:clamp(540px, 80vh, 760px);
+  padding:92px 0 104px;
+  background:var(--blue-deep);
+  color:#fff;
 }
+.hero-media{ position:absolute; inset:0; z-index:-3; }
+.hero-slide{
+  position:absolute; inset:0;
+  background-size:cover; background-position:center 40%;
+  opacity:0;
+  animation:heroPan 24s linear infinite;
+  will-change:opacity, transform;
+}
+.hero-slide.s1{ background-image:url('../images/school-building-2.jpg'); animation-delay:0s; }
+.hero-slide.s2{ background-image:url('../images/school-building-1.jpg'); animation-delay:8s; }
+.hero-slide.s3{ background-image:url('../images/school-building-3.jpg'); animation-delay:16s; }
+/* Hold for a third of the loop, hand over in a 2s dissolve, then drift on
+   unseen back to the start scale — the reset is invisible because opacity is 0. */
+@keyframes heroPan{
+  0%              { opacity:0; transform:scale(1.04); }
+  2%              { opacity:1; }
+  31%             { opacity:1; }
+  36%, 100%       { opacity:0; transform:scale(1.15); }
+}
+
+/* Left-dense blue wash: brand colour over the photograph, and the contrast
+   floor for every piece of white type in the section. */
 .hero::before{
-  content:""; position:absolute; inset:0; opacity:.10; pointer-events:none;
-  background-image:
-    linear-gradient(rgba(255,255,255,.5) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.5) 1px, transparent 1px);
-  background-size:44px 44px;
+  content:""; position:absolute; inset:0; z-index:-2; pointer-events:none;
+  background:
+    linear-gradient(100deg,
+      rgba(7,44,104,.93)  0%,
+      rgba(11,63,143,.84) 38%,
+      rgba(21,104,214,.48) 70%,
+      rgba(47,131,234,.24) 100%),
+    linear-gradient(to top, rgba(6,35,86,.72), transparent 52%);
 }
-.hero-grid{ position:relative; display:grid; grid-template-columns:1.15fr .85fr; gap:50px; align-items:center; }
+/* Warm bloom in the top-right corner, so the crest's orange is present in the
+   first thing anyone sees. */
+.hero::after{
+  content:""; position:absolute; z-index:-1; right:-8%; top:-18%;
+  width:54vmax; height:54vmax; border-radius:50%; pointer-events:none;
+  background:radial-gradient(circle, rgba(249,134,26,.30), transparent 60%);
+}
+
+.hero-inner{ position:relative; max-width:820px; }
 .hero .eyebrow{ color:var(--gold); }
-.hero h1{ color:#fff; font-size:clamp(2.3rem,4.4vw,3.6rem); line-height:1.12; margin:16px 0 20px; }
+.hero .eyebrow::before{ background:var(--gold); }
+.hero h1{
+  color:#fff;
+  font-size:clamp(2.4rem, 5.2vw, 4.2rem);
+  line-height:1.05; letter-spacing:-.015em;
+  margin:18px 0 22px;
+  text-shadow:0 2px 30px rgba(4,24,58,.5);
+}
 .hero h1 em{ font-style:normal; color:var(--gold); }
-.hero p.lead{ color:#d3dcee; font-size:1.12rem; max-width:560px; }
-.hero .cta-row{ display:flex; gap:16px; margin-top:30px; flex-wrap:wrap; }
-.hero-badge{
-  background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.20);
-  border-radius:24px; padding:32px; backdrop-filter:blur(3px);
-  box-shadow:0 24px 50px rgba(2,20,54,.18);
-  max-width:420px; margin:0 auto;
+.hero p.lead{
+  color:#e2ecfb; font-size:clamp(1.02rem,1.25vw,1.16rem);
+  max-width:620px; text-shadow:0 1px 14px rgba(4,24,58,.45);
 }
-.hero-badge .crest{
-  width: 260px; height:auto; margin:0 auto 18px;
-  box-shadow:0 16px 32px rgba(8,34,71,.18);
-  object-fit:contain;
-  border-radius:12px;
+.hero .cta-row{ display:flex; gap:16px; margin-top:32px; flex-wrap:wrap; }
+
+/* Stats read as frosted plaques lifted off the photograph rather than text
+   floating on it — the blur is what keeps them legible over the brighter
+   right-hand side of the frame. */
+.hero-stats{
+  display:flex; flex-wrap:wrap; gap:14px;
+  margin-top:42px; padding:0; border:0;
 }
-.hero-badge h4{ color:#fff; text-align:center; font-size:1.1rem; }
-.hero-badge p{ text-align:center; color:#c3cbdc; font-size:.96rem; margin-bottom:0; }
+.hero-stats div{
+  flex:1 1 160px; padding:15px 20px;
+  border:1px solid rgba(255,255,255,.24);
+  border-left:3px solid var(--gold);
+  border-radius:14px;
+  background:rgba(255,255,255,.11);
+  backdrop-filter:blur(7px); -webkit-backdrop-filter:blur(7px);
+  transition:background .25s ease, border-left-color .25s ease, transform .25s cubic-bezier(.2,.7,.3,1);
+}
+.hero-stats div:hover{
+  transform:translateY(-4px);
+  background:rgba(255,255,255,.17);
+  border-left-color:var(--orange);
+}
+.hero-stats strong{
+  display:block; font-family:'Oswald',sans-serif;
+  font-size:1.85rem; line-height:1.1; color:#fff;
+}
+.hero-stats span{
+  font-size:.76rem; color:#cfdcf2;
+  text-transform:uppercase; letter-spacing:.07em;
+}
 
-.hero-stats{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:40px; border-top:1px solid rgba(255,255,255,.18); padding-top:26px; }
-.hero-stats div{ text-align:left; border-left:2px solid var(--gold); padding-left:16px; }
-.hero-stats div{ text-align:left; border-left:2px solid var(--gold); padding-left:16px; }
-.hero-stats strong{ display:block; font-family:'Oswald',sans-serif; font-size:1.7rem; color:#fff; }
-.hero-stats span{ font-size:.8rem; color:#b9c3d8; text-transform:uppercase; letter-spacing:.05em; }
+/* Scroll cue — the hero is tall enough that first-time visitors need telling
+   there is more below the fold. */
+.hero-scroll{
+  position:absolute; z-index:2; left:50%; bottom:26px; translate:-50% 0;
+  display:inline-flex; flex-direction:column; align-items:center; gap:6px;
+  font-family:'Oswald',sans-serif; font-size:.7rem; letter-spacing:.2em;
+  text-transform:uppercase; color:rgba(255,255,255,.8);
+  transition:color .2s ease;
+}
+.hero-scroll:hover{ color:#fff; }
+.hero-scroll svg{
+  width:20px; height:20px; fill:none; stroke:currentColor;
+  stroke-width:2; stroke-linecap:round; stroke-linejoin:round;
+  animation:scrollNudge 1.9s ease-in-out infinite;
+}
+@keyframes scrollNudge{
+  0%,100%{ transform:translateY(0);   opacity:.75; }
+  50%    { transform:translateY(5px); opacity:1;   }
+}
 
-/* ============== PAGE HERO (inner pages) ============== */
+@media (prefers-reduced-motion:reduce){
+  .hero-slide{ animation:none; }
+  .hero-slide.s1{ opacity:1; }
+  .hero-scroll svg{ animation:none; }
+}
+
+/* ============== PAGE HERO (inner pages) ==============
+   The same campus-behind-blue treatment as the homepage, at a quieter volume:
+   one still frame, no motion, and a denser wash — these bands are only 56px of
+   breathing room around a title, so the photograph reads as texture, not
+   subject. Keeps all 13 inner pages visually of a piece with the front door. */
 .page-hero{
-  background:linear-gradient(160deg, var(--navy-deep), var(--navy-mid));
-  color:#fff; padding:56px 0 46px; position:relative;
+  position:relative; isolation:isolate; overflow:hidden;
+  padding:56px 0 46px; color:#fff;
+  background:
+    linear-gradient(100deg, rgba(7,44,104,.94) 0%, rgba(11,63,143,.88) 46%, rgba(21,104,214,.62) 100%),
+    url('../images/school-building-2.jpg') center 38%/cover no-repeat,
+    var(--blue-deep);
 }
+.page-hero > *{ position:relative; }
 .page-hero::after{ content:""; position:absolute; left:0; right:0; bottom:0; height:6px;
-  background:linear-gradient(90deg, var(--navy) 33%, var(--gold) 33% 66%, var(--orange) 66%); }
+  background:linear-gradient(90deg, var(--blue-mid) 33%, var(--gold) 33% 66%, var(--orange) 66%); }
 .page-hero .eyebrow{ color:var(--gold); }
-.page-hero h1{ color:#fff; font-size:clamp(1.9rem,3.6vw,2.6rem); margin:10px 0 6px; }
-.breadcrumb{ font-family:'Oswald',sans-serif; font-size:.8rem; color:#b9c3d8; letter-spacing:.04em; }
+.page-hero .eyebrow::before{ background:var(--gold); }
+.page-hero h1{ color:#fff; font-size:clamp(1.9rem,3.6vw,2.6rem); margin:10px 0 6px; text-shadow:0 2px 20px rgba(4,24,58,.5); }
+.breadcrumb{ font-family:'Oswald',sans-serif; font-size:.8rem; color:#cfdcf2; letter-spacing:.04em; }
 .breadcrumb a:hover{ color:var(--gold); }
 
-/* ============== VALUES / CARDS ============== */
-.values-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:22px; }
-.value-card{
-  background:var(--paper); border:1px solid var(--line); padding:26px 22px;
-  border-top:4px solid var(--navy); transition:box-shadow .2s ease, transform .2s ease;
-  border-radius:var(--radius);
+/* ============== VALUES / THE SEVEN PILLARS ============== */
+/* The seven values are the school's core story, so they get the most deliberate
+   treatment on the page: a banded section, a numbered card each, and a per-pillar
+   accent drawn from the crest palette. Layout is a 4-over-3 pyramid on a 12-column
+   grid — the odd seventh value reads as intentional rather than left over. */
+.values-section{
+  position:relative; overflow:hidden;
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 0%, rgba(16,54,110,.07), transparent 70%),
+    radial-gradient(ellipse 50% 40% at 92% 88%, rgba(239,125,26,.09), transparent 70%),
+    var(--cream);
 }
-.value-card:nth-child(2){ border-top-color:var(--gold); }
-.value-card:nth-child(3){ border-top-color:var(--orange); }
-.value-card:nth-child(4){ border-top-color:var(--navy-mid); }
-.value-card:nth-child(5){ border-top-color:var(--gold-deep); }
-.value-card:nth-child(6){ border-top-color:var(--navy); }
-.value-card:nth-child(7){ border-top-color:var(--orange); }
-.value-card:hover{ box-shadow:0 16px 30px rgba(8,34,71,.09); transform:translateY(-4px); }
-.value-card .num{ font-family:'Oswald',sans-serif; color:var(--line); font-size:1.6rem; font-weight:700; }
-.value-card h3{ font-size:1.18rem; margin:6px 0 10px; }
-.value-card p{ color:var(--ink-soft); font-size:.94rem; margin-bottom:0; }
+/* Faint grid, echoing the hero, so the band has texture without noise. */
+.values-section::before{
+  content:""; position:absolute; inset:0; pointer-events:none; opacity:.5;
+  background-image:
+    linear-gradient(rgba(16,54,110,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(16,54,110,.05) 1px, transparent 1px);
+  background-size:52px 52px;
+  mask-image:linear-gradient(#000, transparent 78%);
+  -webkit-mask-image:linear-gradient(#000, transparent 78%);
+}
+.values-section > .wrap{ position:relative; }
+
+.section-head.centered{ margin:0 auto 52px; text-align:center; max-width:660px; }
+.section-head.centered .eyebrow{ justify-content:center; }
+
+.pillars{
+  display:grid; grid-template-columns:repeat(12,1fr); gap:22px;
+  margin:0; padding:0; list-style:none;
+  counter-reset:none;
+}
+.pillar{
+  --accent:var(--navy);
+  --accent-soft:rgba(16,54,110,.14);
+  position:relative; isolation:isolate; overflow:hidden;
+  grid-column:span 3;
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:30px 24px 26px;
+  transition:transform .34s cubic-bezier(.2,.7,.3,1), box-shadow .34s ease, border-color .3s ease;
+}
+/* Second row: three cards at 4 columns each, so the row fills edge to edge. */
+.pillar:nth-child(n+5){ grid-column:span 4; }
+
+/* Accent rail across the top — a 3px hint that swells to 6px on hover.
+   Solid fallback first: browsers without color-mix() drop the gradient line
+   and keep a flat accent rail rather than rendering nothing. */
+.pillar::before{
+  content:""; position:absolute; left:0; right:0; top:0; height:3px;
+  background:var(--accent);
+  background:linear-gradient(90deg, var(--accent), color-mix(in srgb, var(--accent) 45%, var(--gold)));
+  transition:height .3s cubic-bezier(.2,.7,.3,1);
+}
+/* Accent wash that fades up from the base of the card on hover. */
+.pillar::after{
+  content:""; position:absolute; inset:0; z-index:-1; opacity:0;
+  background:linear-gradient(180deg, transparent 35%, var(--accent-soft));
+  transition:opacity .34s ease;
+}
+.pillar:hover, .pillar:focus-within{
+  transform:translateY(-7px);
+  border-color:transparent;
+  box-shadow:0 22px 44px -16px var(--accent-soft), 0 6px 16px rgba(8,34,71,.07);
+}
+.pillar:hover::before, .pillar:focus-within::before{ height:6px; }
+.pillar:hover::after, .pillar:focus-within::after{ opacity:1; }
+
+/* Ghost numeral, bottom-right. Big enough to give the card a graphic anchor,
+   pale enough to stay behind the copy. */
+.pillar-num{
+  position:absolute; right:14px; bottom:2px; z-index:-1;
+  font-family:'Oswald',sans-serif; font-weight:700; font-size:4.6rem; line-height:1;
+  color:transparent;
+  -webkit-text-stroke:1.5px var(--accent);
+  opacity:.13;
+  transition:opacity .34s ease, transform .34s cubic-bezier(.2,.7,.3,1);
+  pointer-events:none;
+}
+.pillar:hover .pillar-num{ opacity:.22; transform:translateY(-3px) scale(1.04); }
+
+.pillar-ico{
+  display:flex; align-items:center; justify-content:center;
+  width:52px; height:52px; margin-bottom:18px;
+  border-radius:14px;
+  background:var(--accent);
+  background:linear-gradient(150deg, var(--accent), color-mix(in srgb, var(--accent) 68%, #000));
+  box-shadow:0 10px 20px -8px var(--accent-soft);
+  transition:transform .38s cubic-bezier(.2,.7,.3,1), border-radius .38s ease;
+}
+.pillar-ico svg{
+  width:26px; height:26px; fill:none;
+  stroke:#fff; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;
+}
+.pillar:hover .pillar-ico{ transform:rotate(-6deg) scale(1.07); border-radius:18px; }
+
+.pillar h3{
+  font-size:1.24rem; margin:0 0 9px; position:relative;
+  transition:color .25s ease;
+}
+.pillar:hover h3{ color:var(--accent); }
+.pillar p{ color:var(--ink-soft); font-size:.94rem; margin:0; position:relative; }
+
+/* Per-pillar accents. Navy → gold → orange, cycled so no two neighbours match. */
+.pillar.p1{ --accent:#10366e; --accent-soft:rgba(16,54,110,.20); }
+.pillar.p2{ --accent:#b3810e; --accent-soft:rgba(179,129,14,.22); }
+.pillar.p3{ --accent:#ef7d1a; --accent-soft:rgba(239,125,26,.24); }
+.pillar.p4{ --accent:#1c4d8f; --accent-soft:rgba(28,77,143,.22); }
+.pillar.p5{ --accent:#8a6a1f; --accent-soft:rgba(138,106,31,.22); }
+.pillar.p6{ --accent:#0d5a63; --accent-soft:rgba(13,90,99,.22); }
+.pillar.p7{ --accent:#c2410c; --accent-soft:rgba(194,65,12,.22); }
 
 .intro-block{ display:grid; grid-template-columns:.9fr 1.1fr; gap:56px; align-items:start; }
 .intro-block .crest-lg{ width:180px; }
@@ -462,55 +705,178 @@ body.nav-open{ overflow:hidden; }
 /* ============== FEATURE / FACILITY TILES (icon based, no stock photos) ============== */
 .tile-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
 .tile{
+  position:relative; overflow:hidden;
   background:var(--paper); border:1px solid var(--line); padding:24px;
   display:flex; gap:16px; align-items:flex-start; min-height:170px;
-  border-radius:var(--radius);
+  border-radius:14px;
+  transition:transform .3s cubic-bezier(.2,.7,.3,1), box-shadow .3s ease, border-color .3s ease;
 }
+/* Gold rail that wipes in from the left edge on hover. */
+.tile::before{
+  content:""; position:absolute; left:0; top:0; bottom:0; width:3px;
+  background:linear-gradient(180deg, var(--gold), var(--orange));
+  transform:scaleY(0); transform-origin:top;
+  transition:transform .34s cubic-bezier(.2,.7,.3,1);
+}
+.tile:hover{
+  transform:translateY(-5px);
+  border-color:transparent;
+  box-shadow:0 20px 38px -18px rgba(8,34,71,.34), 0 4px 12px rgba(8,34,71,.05);
+}
+.tile:hover::before{ transform:scaleY(1); }
 .tile .ico{
-  flex:none; width:48px; height:48px; border-radius:50%; background:var(--navy-deep);
+  flex:none; width:48px; height:48px; border-radius:50%;
+  background:var(--navy-deep);
+  background:linear-gradient(150deg, var(--navy-mid), var(--navy-deep));
   display:flex; align-items:center; justify-content:center;
+  box-shadow:0 8px 18px -8px rgba(8,34,71,.5);
+  transition:transform .34s cubic-bezier(.2,.7,.3,1), border-radius .34s ease;
 }
+.tile:hover .ico{ transform:scale(1.08) rotate(-6deg); border-radius:16px; }
 .tile .ico svg{ width:24px; height:24px; stroke:var(--gold); fill:none; stroke-width:1.7; }
-.tile h4{ font-size:1.02rem; margin-bottom:4px; font-family:'Inter',sans-serif; font-weight:700; }
+.tile h4{ font-size:1.02rem; margin-bottom:4px; font-family:'Inter',sans-serif; font-weight:700; transition:color .22s ease; }
+.tile:hover h4{ color:var(--navy); }
 .tile p{ font-size:.9rem; color:var(--ink-soft); margin:0; }
 
 /* ============== SCHOLARSHIP TABLE ============== */
-.scholar-table{ width:100%; border-collapse:collapse; background:var(--paper); }
+.scholar-table{
+  width:100%; border-collapse:collapse; background:var(--paper);
+  border-radius:12px; overflow:hidden;
+  box-shadow:0 22px 48px -24px rgba(2,20,54,.6);
+}
 .scholar-table th,.scholar-table td{ padding:18px 20px; text-align:left; border-bottom:1px solid var(--line); }
 .scholar-table thead th{ background:var(--navy-deep); color:#fff; font-family:'Oswald',sans-serif; letter-spacing:.04em; text-transform:uppercase; font-size:.82rem; }
+.scholar-table tbody td{ color:var(--ink); font-weight:500; }
 .scholar-table tbody tr:last-child td{ border-bottom:none; }
 .scholar-table td.pct{ font-family:'Oswald',sans-serif; font-weight:600; color:var(--navy-deep); font-size:1.1rem; }
+/* Gold rail slides in from the left on hover to mark the row being read. */
+.scholar-table tbody tr{ transition:background .22s ease; }
+.scholar-table tbody tr td:first-child{ box-shadow:inset 0 0 0 0 var(--gold); transition:box-shadow .26s cubic-bezier(.2,.7,.3,1); }
 .scholar-table tbody tr:hover{ background:var(--cream); }
+.scholar-table tbody tr:hover td:first-child{ box-shadow:inset 4px 0 0 0 var(--gold); }
+.scholar-table tbody tr:hover td.pct{ color:var(--gold-deep); }
 
 /* ============== TABS (Results) ============== */
 .tabs-nav{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:30px; }
 .tabs-nav button{
   font-family:'Oswald',sans-serif; font-size:.86rem; letter-spacing:.04em; text-transform:uppercase;
   padding:11px 20px; background:var(--paper); border:1px solid var(--line); cursor:pointer; color:var(--navy-deep);
+  border-radius:99px;
+  transition:background .22s ease, color .22s ease, border-color .22s ease,
+             transform .2s ease, box-shadow .22s ease;
 }
-.tabs-nav button.active{ background:var(--navy-deep); color:#fff; border-color:var(--navy-deep); }
+.tabs-nav button:hover{
+  transform:translateY(-2px); border-color:var(--gold);
+  box-shadow:0 8px 18px -10px rgba(8,34,71,.35);
+}
+.tabs-nav button.active{
+  background:var(--navy-deep); color:#fff; border-color:var(--navy-deep);
+  box-shadow:0 10px 22px -12px rgba(8,34,71,.6);
+}
 .tab-panel{ display:none; }
-.tab-panel.active{ display:block; }
-.result-card{ background:var(--paper); border:1px solid var(--line); padding:26px; border-left:4px solid var(--gold); border-radius:var(--radius); }
+.tab-panel.active{ display:block; animation:tabIn .38s cubic-bezier(.2,.7,.3,1) both; }
+@keyframes tabIn{ from{ opacity:0; transform:translateY(12px); } to{ opacity:1; transform:none; } }
+
+.result-card{
+  position:relative;
+  background:var(--paper); border:1px solid var(--line); padding:28px;
+  border-left:4px solid var(--gold); border-radius:var(--radius);
+  box-shadow:0 14px 30px -22px rgba(8,34,71,.4);
+}
 .result-card h3{ font-size:1.2rem; margin-bottom:8px; }
 .result-card p{ color:var(--ink-soft); margin-bottom:0; }
 
+/* ---- PW (Physics Wallah) academic partnership ----
+   NEET prep runs under the PW programme, so both the NEET and PW panels carry the
+   partner mark. Accent shifts from the school's gold to PW's indigo to make the
+   partnership legible at a glance. */
+.result-card.is-pw{
+  border-left-color:#5B3FD1;
+  background:
+    linear-gradient(180deg, rgba(91,63,209,.05), transparent 42%),
+    var(--paper);
+}
+.pw-flag{
+  display:inline-flex; align-items:center; gap:7px;
+  font-family:'Oswald',sans-serif; font-size:.68rem; font-weight:600;
+  letter-spacing:.14em; text-transform:uppercase;
+  color:#4632ad; background:rgba(91,63,209,.10);
+  border:1px solid rgba(91,63,209,.22);
+  border-radius:99px; padding:4px 13px; margin-bottom:12px;
+}
+.pw-flag::before{
+  content:""; width:6px; height:6px; border-radius:50%; background:#5B3FD1;
+}
+.pw-partner{
+  display:flex; align-items:center; gap:22px; flex-wrap:wrap;
+  margin-top:24px; padding:20px 22px;
+  background:var(--cream);
+  border:1px solid var(--line);
+  border-radius:14px;
+}
+.pw-logo{
+  width:172px; height:auto; flex:none;
+  border-radius:0; /* the mark carries its own shape — no card rounding */
+}
+.pw-partner-text{ min-width:0; flex:1 1 260px; }
+.pw-partner-text strong{
+  display:block;
+  font-family:'Oswald',sans-serif; font-size:.7rem; font-weight:600;
+  letter-spacing:.16em; text-transform:uppercase; color:var(--gold-deep);
+  margin-bottom:4px;
+}
+.pw-partner-text span{ font-size:.92rem; color:var(--ink-soft); }
+
+@media (max-width:560px){
+  .pw-partner{ gap:14px; padding:18px; }
+  .pw-logo{ width:140px; }
+}
+
 /* ============== TIMELINE (Daily routine) ============== */
 .timeline{ position:relative; padding-left:30px; }
-.timeline::before{ content:""; position:absolute; left:6px; top:6px; bottom:6px; width:2px; background:var(--line); }
+/* The rail runs navy at dawn to gold by evening, so a long day reads as a gradient. */
+.timeline::before{
+  content:""; position:absolute; left:6px; top:6px; bottom:6px; width:2px;
+  background:linear-gradient(180deg, var(--navy), var(--gold) 55%, var(--orange));
+  opacity:.5;
+}
 .timeline-item{ position:relative; padding-bottom:26px; }
 .timeline-item:last-child{ padding-bottom:0; }
-.timeline-item::before{ content:""; position:absolute; left:-30px; top:4px; width:12px; height:12px; border-radius:50%; background:var(--orange); border:3px solid var(--cream); }
+.timeline-item::before{
+  content:""; position:absolute; left:-30px; top:4px; width:12px; height:12px;
+  border-radius:50%; background:var(--orange); border:3px solid var(--cream);
+  box-shadow:0 0 0 0 rgba(239,125,26,.35);
+  transition:box-shadow .3s ease, transform .3s cubic-bezier(.2,.7,.3,1);
+}
+.timeline-item:hover::before{ transform:scale(1.15); box-shadow:0 0 0 5px rgba(239,125,26,.18); }
 .timeline-item .time{ font-family:'Oswald',sans-serif; color:var(--gold-deep); font-weight:600; font-size:.85rem; letter-spacing:.04em; text-transform:uppercase; }
-.timeline-item h4{ margin:2px 0 4px; font-size:1.02rem; font-family:'Inter',sans-serif; font-weight:700; }
+.timeline-item h4{ margin:2px 0 4px; font-size:1.02rem; font-family:'Inter',sans-serif; font-weight:700; transition:color .22s ease; }
+.timeline-item:hover h4{ color:var(--navy); }
 
 /* ============== QUOTE / MESSAGE BLOCK ============== */
-.message-block{ display:grid; grid-template-columns:220px 1fr; gap:40px; align-items:start; background:var(--paper); border:1px solid var(--line); padding:34px; margin-bottom:28px; }
+.message-block{
+  position:relative; overflow:hidden;
+  display:grid; grid-template-columns:220px 1fr; gap:40px; align-items:start;
+  background:var(--paper); border:1px solid var(--line); border-radius:14px;
+  padding:34px; margin-bottom:28px;
+  box-shadow:0 14px 34px -26px rgba(8,34,71,.45);
+  transition:box-shadow .3s ease, transform .3s cubic-bezier(.2,.7,.3,1);
+}
+.message-block:hover{ transform:translateY(-3px); box-shadow:0 22px 44px -26px rgba(8,34,71,.5); }
+/* Oversized quote mark, bled off the top-right corner as a watermark. */
+.message-block::after{
+  content:"\201D"; position:absolute; right:18px; top:-26px;
+  font-family:'Marcellus',serif; font-size:8rem; line-height:1;
+  color:var(--gold); opacity:.13; pointer-events:none;
+}
 .message-block .portrait{
-  width:100%; aspect-ratio:1/1.1; background:linear-gradient(160deg,var(--navy),var(--navy-mid));
+  width:100%; aspect-ratio:1/1.1; border-radius:10px;
+  background:linear-gradient(160deg,var(--navy),var(--navy-mid));
   display:flex; align-items:center; justify-content:center; color:var(--gold); font-family:'Marcellus',serif; font-size:2.6rem;
+  box-shadow:0 14px 28px -14px rgba(8,34,71,.5);
 }
 .message-block h3{ font-size:1.3rem; }
+.message-block .portrait img{ width:100%; height:100%; object-fit:cover; object-position:center top; }
 .message-block .leader-name{
   font-family:'Oswald',sans-serif; font-weight:700; font-size:1.08rem;
   color:var(--navy-deep); letter-spacing:.02em; display:block; margin-bottom:5px;
@@ -592,26 +958,149 @@ body.nav-open{ overflow:hidden; }
   .disc-block > h3{ font-size:.86rem; padding:13px 16px; }
 }
 
-/* ============== GALLERY (icon-tile mosaic — placeholders for real photos) ============== */
+/* ============== PHOTO GALLERY ==============
+   Tiles size themselves from `--ratio` rather than a fixed pixel height, so the
+   box is reserved before a single byte of image arrives (no layout shift) and it
+   still scales with the column at every breakpoint instead of letterboxing.
+
+   Ratio is set per grid, not per figure, and the markup groups photos to match
+   how they were actually shot: the phone originals are 3:4 portrait apart from
+   four true 4:3 landscapes (corridor-wide, reception, and the two lab wides) and
+   four 9:16 full-body sports frames. Portrait photos therefore go in a
+   `.portrait-set` grid and the wide ones in the default 4/3 grid, so a row never
+   mixes orientations and `object-fit:cover` never has to throw away half a
+   photo. The 9:16 frames sit in a portrait grid and lose ~25% of their height,
+   which is why those figures set `--pos` to keep the subject in frame. */
+.photo-gallery{ --ratio:4/3; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; }
+.photo-gallery.portrait-set{ --ratio:3/4; }
+/* The four true landscapes are also the four best photographs on the site, so
+   they run two-up instead of three — at 3-up a 4/3 tile is shorter than the
+   portrait tiles beside it and reads as the lesser image. */
+.photo-gallery.wide-set{ --ratio:4/3; grid-template-columns:repeat(2,minmax(0,1fr)); }
+.photo-gallery figure{ position:relative; margin:0; overflow:hidden; border-radius:14px; box-shadow:0 16px 32px -20px rgba(8,34,71,.55); background:var(--navy-deep); aspect-ratio:var(--ratio); }
+.photo-gallery picture, .photo-figure picture, .campus-photo-row picture{ display:block; height:100%; }
+.photo-gallery img{ width:100%; height:100%; object-fit:cover; object-position:var(--pos,center); border-radius:0; transition:transform .45s cubic-bezier(.2,.7,.3,1); }
+.photo-gallery figcaption{ position:absolute; inset:auto 0 0; padding:34px 16px 14px; color:#fff; font-family:'Oswald',sans-serif; font-size:.86rem; letter-spacing:.03em; text-transform:uppercase; background:linear-gradient(transparent,rgba(8,34,71,.9)); }
+.photo-gallery figcaption small{ display:block; margin-top:3px; font-family:'Inter',system-ui,sans-serif; font-size:.76rem; letter-spacing:0; text-transform:none; color:#d8e2f2; }
+.photo-gallery figure:hover img{ transform:scale(1.06); }
+
+/* A single photo used inline in a text column, same chrome as a gallery tile. */
+.photo-figure{ position:relative; margin:26px 0 0; overflow:hidden; border-radius:14px; box-shadow:0 16px 32px -20px rgba(8,34,71,.55); background:var(--navy-deep); aspect-ratio:var(--ratio,16/9); }
+.photo-figure img{ width:100%; height:100%; object-fit:cover; object-position:var(--pos,center); }
+.photo-figure figcaption{ position:absolute; inset:auto 0 0; padding:30px 16px 13px; color:#fff; font-family:'Oswald',sans-serif; font-size:.82rem; letter-spacing:.03em; text-transform:uppercase; background:linear-gradient(transparent,rgba(8,34,71,.9)); }
+
 .gallery-grid{ display:grid; grid-template-columns:repeat(4,1fr); grid-auto-rows:150px; gap:14px; }
 .gallery-tile{
   position:relative; overflow:hidden; display:flex; align-items:flex-end; padding:16px;
   color:#fff; font-family:'Oswald',sans-serif; font-size:.82rem; letter-spacing:.03em; text-transform:uppercase;
-  border-radius:var(--radius);
+  border-radius:12px;
+  transition:transform .38s cubic-bezier(.2,.7,.3,1), box-shadow .38s ease;
 }
-.gallery-tile span{ position:relative; z-index:1; }
-.gallery-tile::before{ content:""; position:absolute; inset:0; background:linear-gradient(160deg,var(--navy-mid),var(--navy-deep)); opacity:.92; }
+.gallery-tile span{ position:relative; z-index:2; transition:transform .38s cubic-bezier(.2,.7,.3,1); }
+.gallery-tile::before{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(160deg,var(--navy-mid),var(--navy-deep)); opacity:.92;
+  transition:transform .5s cubic-bezier(.2,.7,.3,1), opacity .35s ease;
+}
 .gallery-tile.g2::before{ background:linear-gradient(160deg,var(--orange),#c25e0d); }
+.gallery-tile[style*="--gallery-image"]::before{ background-image:linear-gradient(180deg,rgba(8,34,71,.04) 38%,rgba(8,34,71,.88)),var(--gallery-image); background-size:cover; background-position:center; opacity:1; }
 .gallery-tile.g3::before{ background:linear-gradient(160deg,var(--gold),var(--gold-deep)); }
+.gallery-tile:hover{
+  transform:translateY(-4px);
+  box-shadow:0 20px 40px -16px rgba(8,34,71,.5);
+}
+/* Slow zoom on the wash reads as a photo hover — and will still read correctly
+   once real images replace these gradient placeholders. */
+.gallery-tile:hover::before{ transform:scale(1.08); opacity:1; }
+.gallery-tile:hover span{ transform:translateY(-3px); }
 .gallery-tile.wide{ grid-column:span 2; }
 .gallery-tile.tall{ grid-row:span 2; }
+
+/* A mosaic tile holding a real photograph rather than a CSS background. A
+   background-image cannot carry srcset or loading="lazy", so these seven tiles
+   would otherwise be seven unavoidable full-size downloads on page load. The
+   <picture> sits under the ::before scrim - which keeps the label legible - and
+   takes over the hover zoom the gradient used to do. Everything else about the
+   tile (grid spans, hover lift, typography) is unchanged. */
+.gallery-tile.has-photo::before{
+  background:linear-gradient(180deg,rgba(8,34,71,.04) 38%,rgba(8,34,71,.88));
+  opacity:1; z-index:1;
+}
+/* Scaling a gradient scrim just slides its midpoint around; the photo moves instead. */
+.gallery-tile.has-photo:hover::before{ transform:none; }
+.gallery-tile.has-photo picture{ position:absolute; inset:0; z-index:0; }
+.gallery-tile.has-photo img{
+  width:100%; height:100%; object-fit:cover; object-position:var(--pos,center);
+  transition:transform .5s cubic-bezier(.2,.7,.3,1);
+}
+.gallery-tile.has-photo:hover img{ transform:scale(1.08); }
 .gallery-note{ margin-top:18px; font-size:.85rem; color:var(--ink-soft); font-style:italic; }
+.campus-photo-row{ display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:16px; margin:28px 0 34px; }
+.campus-photo-row figure{ position:relative; margin:0; overflow:hidden; border-radius:14px; box-shadow:0 16px 32px -20px rgba(8,34,71,.55); background:var(--navy-deep); aspect-ratio:var(--ratio,4/3); }
+.campus-photo-row img{ width:100%; height:100%; object-fit:cover; object-position:var(--pos,center); }
+.campus-photo-row figcaption{ position:absolute; inset:auto 0 0; padding:28px 14px 11px; color:#fff; font-family:'Oswald',sans-serif; font-size:.78rem; letter-spacing:.03em; text-transform:uppercase; background:linear-gradient(transparent,rgba(8,34,71,.9)); }
+
+/* Photos fade in as each one finishes decoding, so a slow connection resolves
+   tile by tile instead of flashing half-painted images. Gated the same way as
+   .reveal: without scripting the image is simply visible from the start. */
+@supports (translate: 0 1px){
+  @media (scripting: enabled){
+    .photo-gallery img, .photo-figure img, .campus-photo-row img, .gallery-tile img{
+      opacity:0; transition:opacity .5s ease, transform .45s cubic-bezier(.2,.7,.3,1);
+    }
+    .photo-gallery img.is-loaded, .photo-figure img.is-loaded, .campus-photo-row img.is-loaded, .gallery-tile img.is-loaded{ opacity:1; }
+  }
+}
+@media (prefers-reduced-motion: reduce){
+  .photo-gallery img, .photo-figure img, .campus-photo-row img, .gallery-tile img{ transition:none; }
+  .photo-gallery figure:hover img, .gallery-tile.has-photo:hover img{ transform:none; }
+}
+
+@media (max-width:760px){
+  .photo-gallery{ grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+  /* Wide shots go full-width rather than shrinking to a 2-up thumbnail. */
+  .photo-gallery.wide-set{ grid-template-columns:1fr; }
+  .campus-photo-row{ grid-template-columns:1fr; }
+  .campus-photo-row figure{ --ratio:16/10; }
+}
+
+@media (max-width:480px){
+  /* One-up on a phone. The ratios stay as declared: a full-width 3/4 tile is
+     ~430px tall on a 375px screen, which is a normal photo on a phone, and
+     forcing it shallower here would crop the subject out of every portrait
+     shot for the smallest screens. */
+  .photo-gallery{ grid-template-columns:1fr; }
+}
 
 /* ============== LEADER GRID ============== */
 .leader-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
-.leader-card{ background:var(--paper); border:1px solid var(--line); text-align:center; padding:0 0 20px; border-radius:var(--radius); }
-.leader-card .avatar{ height:120px; background:linear-gradient(160deg,var(--navy),var(--navy-mid)); display:flex; align-items:center; justify-content:center; }
-.leader-card .avatar svg{ width:40px; height:40px; stroke:var(--gold); fill:none; stroke-width:1.6; }
+.leader-card{
+  position:relative; overflow:hidden;
+  background:var(--paper); border:1px solid var(--line); text-align:center; padding:0 0 20px;
+  border-radius:14px;
+  transition:transform .3s cubic-bezier(.2,.7,.3,1), box-shadow .3s ease, border-color .3s ease;
+}
+.leader-card:hover{
+  transform:translateY(-6px); border-color:transparent;
+  box-shadow:0 22px 40px -18px rgba(8,34,71,.36);
+}
+.leader-card .avatar{
+  height:120px; background:linear-gradient(160deg,var(--navy),var(--navy-mid));
+  display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;
+}
+/* Gold sheen sweeps across the avatar band on hover. */
+.leader-card .avatar::after{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(115deg, transparent 38%, rgba(217,160,28,.35) 50%, transparent 62%);
+  transform:translateX(-100%);
+  transition:transform .7s cubic-bezier(.2,.7,.3,1);
+}
+.leader-card:hover .avatar::after{ transform:translateX(100%); }
+.leader-card .avatar svg{
+  width:40px; height:40px; stroke:var(--gold); fill:none; stroke-width:1.6;
+  transition:transform .34s cubic-bezier(.2,.7,.3,1);
+}
+.leader-card:hover .avatar svg{ transform:scale(1.12); }
 .leader-card h4{ font-size:.98rem; margin:16px 0 2px; font-family:'Inter',sans-serif; font-weight:700; }
 .leader-card span{ font-size:.8rem; color:var(--ink-soft); font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:.03em; }
 
@@ -629,25 +1118,93 @@ body.nav-open{ overflow:hidden; }
 .form-card .btn{ margin-top:6px; }
 
 /* ============== STRIP / CTA BAND ============== */
-.cta-band{ background:var(--orange); color:#fff; padding:50px 0; }
-.cta-band .wrap{ display:flex; justify-content:space-between; align-items:center; gap:26px; flex-wrap:wrap; }
+.cta-band{
+  position:relative; overflow:hidden;
+  background:linear-gradient(120deg, var(--orange), #d9660c 60%, #c25e0d);
+  color:#fff; padding:50px 0;
+}
+/* Faint diagonal weave lifts the flat orange without competing with the text. */
+.cta-band::before{
+  content:""; position:absolute; inset:0; pointer-events:none; opacity:.5;
+  background-image:repeating-linear-gradient(135deg, rgba(255,255,255,.07) 0 2px, transparent 2px 14px);
+}
+/* Gold glow bleeding in from the right ties the band back to the brand palette. */
+.cta-band::after{
+  content:""; position:absolute; right:-90px; top:-70px;
+  width:340px; height:340px; border-radius:50%; pointer-events:none;
+  background:radial-gradient(circle, rgba(217,160,28,.35), transparent 68%);
+}
+.cta-band .wrap{ position:relative; z-index:1; display:flex; justify-content:space-between; align-items:center; gap:26px; flex-wrap:wrap; }
 .cta-band h3{ color:#fff; font-size:1.5rem; margin-bottom:4px; }
 .cta-band p{ color:rgba(255,255,255,.9); margin:0; }
 .cta-band .btn-outline{ border-color:#fff; color:#fff; }
+.cta-band .btn-outline:hover{ background:#fff; color:#c25e0d; box-shadow:0 14px 28px -12px rgba(0,0,0,.3); }
 
 /* ============== FOOTER ============== */
-footer.site-footer{ background:var(--navy-deep); color:#c3cbdc; padding-top:60px; }
-.footer-grid{ display:grid; grid-template-columns:1.4fr 1fr 1fr 1.2fr; gap:40px; padding-bottom:44px; }
-.footer-grid h5{ font-family:'Oswald',sans-serif; letter-spacing:.05em; text-transform:uppercase; font-size:.85rem; color:var(--gold); margin-bottom:18px; }
-.footer-grid .fbrand{ display:flex; gap:12px; align-items:center; margin-bottom:14px; }
-.footer-grid .fbrand img{ height:48px; width:auto; border-radius:12px; }
-.footer-grid p{ font-size:.9rem; color:#a9b4cb; }
-.footer-grid ul li{ margin-bottom:10px; font-size:.9rem; }
-.footer-grid ul a:hover{ color:var(--gold); }
-.footer-bottom{ border-top:1px solid rgba(255,255,255,.12); padding:20px 0; font-size:.82rem; color:#93a0bb; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; }
-.footer-socials{ display:flex; gap:14px; }
-.footer-socials a{ width:34px; height:34px; border:1px solid rgba(255,255,255,.25); border-radius:50%; display:flex; align-items:center; justify-content:center; background:var(--paper); }
-.footer-socials svg{ width:16px; height:16px; stroke:var(--navy-deep); fill:none; }
+footer.site-footer{
+  position:relative; isolation:isolate; margin-top:68px; padding-top:52px;
+  background:radial-gradient(circle at 48% 28%,rgba(66,146,240,.45),transparent 46%),linear-gradient(145deg,#0e4a9c,var(--blue-deep) 52%,#08326f);
+  color:#d6deec;
+}
+.footer-icon-sprite{ position:absolute; width:0; height:0; overflow:hidden; }
+.footer-wave{ position:absolute; z-index:2; left:0; right:0; top:-68px; height:80px; pointer-events:none; }
+.footer-wave svg{ display:block; width:100%; height:100%; }
+.footer-wave .wave-orange{ fill:var(--orange); }
+.footer-wave .wave-navy{ fill:#0e4a9c; }
+.footer-wrap{ position:relative; z-index:3; }
+.footer-grid{ display:grid; grid-template-columns:1.25fr 1fr 1fr 1.2fr; gap:34px; padding-bottom:34px; }
+.footer-grid h5{ position:relative; margin:0 0 18px; padding-bottom:9px; font-family:'Oswald',sans-serif; font-size:1rem; font-weight:600; letter-spacing:.09em; text-transform:uppercase; color:#fff; }
+.footer-grid h5::after{ content:""; position:absolute; left:0; bottom:0; width:42px; height:2px; background:var(--orange); }
+.footer-brand-col .fbrand{ display:inline-flex; align-items:center; justify-content:center; width:min(250px,100%); min-height:120px; margin-bottom:16px; padding:8px 12px; background:#fff; border-radius:8px; box-shadow:0 18px 44px rgba(1,12,31,.28); }
+.footer-brand-col .fbrand img{ width:100%; height:104px; object-fit:contain; border-radius:0; }
+.footer-brand-col p{ max-width:300px; margin:0; color:#d6deec; font-size:.9rem; line-height:1.7; }
+.footer-rule{ display:block; width:42px; height:2px; margin-top:18px; background:var(--orange); }
+.footer-link-list{ display:grid; gap:9px; }
+.footer-link-list li{ margin:0; }
+.footer-link-list a{ display:flex; align-items:center; gap:13px; color:#eef3fb; font-size:.92rem; line-height:1.35; }
+.footer-link-icon{ flex:none; width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; border:1px solid rgba(255,255,255,.2); background:rgba(255,255,255,.035); color:var(--orange); transition:background .2s ease,border-color .2s ease,transform .2s ease; }
+.footer-link-icon svg,.footer-contact-icon svg,.footer-bottom-icon svg{ width:21px; height:21px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+.footer-link-list a:hover{ color:#fff; }
+.footer-link-list a:hover .footer-link-icon{ background:var(--orange); border-color:var(--orange); color:#fff; transform:translateY(-2px); }
+.footer-contact-list{ display:grid; gap:9px; }
+.footer-contact-list li{ display:flex; align-items:flex-start; gap:13px; margin:0; color:#eef3fb; font-size:.91rem; line-height:1.55; }
+.footer-contact-list a{ color:#eef3fb; overflow-wrap:anywhere; }
+.footer-contact-list a:hover{ color:var(--orange); }
+.footer-contact-icon{ flex:none; display:flex; align-items:center; justify-content:center; width:28px; height:28px; color:var(--orange); }
+.footer-socials{ display:flex; flex-wrap:wrap; gap:9px; margin-top:16px; }
+.footer-socials a{
+  width:38px; height:38px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.20);
+  color:#cfd8ea;
+  transition:transform .24s cubic-bezier(.2,.7,.3,1), background .25s ease,
+             color .2s ease, border-color .25s ease, box-shadow .25s ease;
+}
+.footer-socials a .social-ico{ width:18px; height:18px; }
+.footer-socials a:hover{
+  transform:translateY(-4px); color:#fff; border-color:transparent;
+}
+.footer-socials a[data-social="instagram"]:hover{
+  background:linear-gradient(45deg,#f09433,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888);
+  box-shadow:0 12px 24px -6px rgba(220,39,67,.55);
+}
+.footer-socials a[data-social="facebook"]:hover{
+  background:#1877f2; box-shadow:0 12px 24px -6px rgba(24,119,242,.55);
+}
+.footer-socials a[data-social="youtube"]:hover{
+  background:#ff0000; box-shadow:0 12px 24px -6px rgba(255,0,0,.5);
+}
+.footer-socials a[data-social="whatsapp"]:hover{
+  background:#25d366; box-shadow:0 12px 24px -6px rgba(37,211,102,.5);
+}
+.footer-bottom{ display:grid; grid-template-columns:1fr 1.35fr 1.15fr; border-top:1px solid rgba(255,255,255,.15); padding:18px 0 22px; color:#e8edf6; font-size:.84rem; line-height:1.45; }
+.footer-bottom-item{ display:flex; align-items:center; gap:12px; min-height:46px; padding:0 22px; }
+.footer-bottom-item:first-child{ padding-left:0; }
+.footer-bottom-item + .footer-bottom-item{ border-left:1px solid rgba(255,255,255,.15); }
+.footer-bottom-icon{ flex:none; width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; border:1px solid rgba(255,255,255,.22); color:var(--orange); }
+.footer-motto{ font-family:'Oswald',sans-serif; font-size:1rem; font-style:italic; letter-spacing:.04em; text-transform:uppercase; }
+.footer-motto strong{ display:block; color:var(--orange); font-style:normal; letter-spacing:.06em; }
 
 /* ============== MAP EMBED PLACEHOLDER ============== */
 .map-frame{ width:100%; height:340px; border:1px solid var(--line); }
@@ -782,21 +1339,56 @@ footer.site-footer{ background:var(--navy-deep); color:#c3cbdc; padding-top:60px
   }
 }
 
+/* ============== SCROLL REVEAL ============== */
+/* Gated behind `scripting: enabled` so a no-JS visitor gets the content outright
+   instead of a page of invisible boxes — and so there's no flash of visible
+   content before the observer in js/script.js takes over.
+
+   The lift uses `translate`, not `transform`. Cards carry .reveal *and* their own
+   `:hover{transform:translateY(...)}` rule, and both selectors are specificity
+   (0,2,0) — so whichever comes later in this file would win outright. Animating a
+   separate property keeps the two independent: reveal owns `translate`, hover owns
+   `transform`, and they compose instead of cancelling.
+
+   `@supports (translate: 0 1px)` guards the hide: a browser new enough to report
+   `scripting: enabled` but too old for the independent `translate` property would
+   otherwise apply opacity:0 and never get a working lift to undo it. */
+@supports (translate: 0 1px){
+  @media (scripting: enabled){
+    .reveal{
+      opacity:0;
+      translate:0 24px;
+      transition:opacity .62s ease, translate .62s cubic-bezier(.2,.7,.3,1);
+      transition-delay:var(--reveal-delay,0ms);
+      will-change:opacity, translate;
+    }
+    .reveal.is-visible{ opacity:1; translate:none; will-change:auto; }
+  }
+}
+
 /* ============== RESPONSIVE ============== */
 @media (max-width:980px){
-  .nav-row{ padding:8px 14px; gap:14px; }
-  .brand{ padding:10px 14px; gap:12px; }
-  .brand img{ height:42px; width:auto; }
-  .brand .brand-text span:last-child{ font-size:1rem; }
-  .hero-grid{ grid-template-columns:1fr; }
-  .hero-badge{ margin-top:32px; }
-  .hero-stats{ grid-template-columns:1fr; text-align:center; }
-  .hero-stats div{ border-left:none; padding-left:0; }
+  .nav-row{ padding:4px 14px; gap:14px; }
+  .brand-row{ min-height:90px; padding:8px 20px; }
+  .brand{ padding:0; gap:12px; }
+  .brand img{ width:116px; max-width:116px; height:auto; }
+  .hero{ min-height:0; padding:72px 0 92px; }
+  .hero-stats div{ flex:1 1 130px; }
   .values-grid{ grid-template-columns:repeat(2,1fr); }
+  /* Two per row; the odd seventh takes the full width so the row isn't half empty. */
+  .pillar, .pillar:nth-child(n+5){ grid-column:span 6; }
+  .pillar:last-child{ grid-column:span 12; }
   .tile-grid{ grid-template-columns:repeat(2,1fr); }
   .intro-block{ grid-template-columns:1fr; }
   .side-layout{ grid-template-columns:1fr; }
   .side-layout > *{ min-width:0; }
+  /* Four two-column splits (contact, admissions, student-life) set their columns
+     with an inline style, so on a phone the contact form rendered 180px wide with
+     the address tiles at 80px beside it, and the other two pages the same. The
+     inline declarations are left in place - so desktop is byte-identical - and
+     `.split-2` is only a hook to collapse them here, alongside .intro-block and
+     .side-layout. !important is required: nothing else outranks an inline style. */
+  .split-2{ grid-template-columns:1fr !important; }
   .side-nav{ position:static; display:flex; overflow-x:auto; }
   .side-nav a{ border-left:none; border-bottom:3px solid transparent; white-space:nowrap; }
   .side-nav a:hover,.side-nav a.active{ border-left:none; border-bottom-color:var(--orange); }
@@ -804,9 +1396,17 @@ footer.site-footer{ background:var(--navy-deep); color:#c3cbdc; padding-top:60px
   .message-block .portrait{ width:120px; aspect-ratio:1; }
   .leader-grid{ grid-template-columns:repeat(2,1fr); }
   .gallery-grid{ grid-template-columns:repeat(2,1fr); }
-  .footer-grid{ grid-template-columns:1fr 1fr; }
+  .footer-grid{ grid-template-columns:1fr 1fr; gap:34px; }
+  .footer-brand-col{ grid-column:1/-1; }
+  .footer-brand-col p{ max-width:520px; }
+  .footer-bottom{ grid-template-columns:1fr 1fr; }
+  .footer-bottom-item:last-child{ grid-column:1/-1; border-left:0; border-top:1px solid rgba(255,255,255,.15); padding:22px 0 0; margin-top:20px; }
 }
 @media (max-width:760px){
+  .brand-row{ min-height:84px; padding:7px 16px; gap:16px; }
+  .brand-row .brand img{ width:100px; max-width:100px; height:auto; padding:0; border-radius:0; }
+  .brand-row > .btn{ padding:10px 15px; font-size:.8rem; }
+  .nav-row{ justify-content:flex-end; min-height:52px; padding:4px 14px; }
   /* Slide-in drawer. Uses visibility so the panel is not focusable while closed. */
   nav.primary-nav{
     position:fixed; top:0; right:0; bottom:0; left:auto;
@@ -904,9 +1504,22 @@ footer.site-footer{ background:var(--navy-deep); color:#c3cbdc; padding-top:60px
   .hamburger{ display:block; }
   .header-cta .btn{ display:none; }
   .values-grid{ grid-template-columns:1fr; }
+  .pillar, .pillar:nth-child(n+5), .pillar:last-child{ grid-column:span 12; }
+  .pillars{ gap:16px; }
+  .pillar{ padding:26px 22px 24px; }
+  .pillar-num{ font-size:3.8rem; }
   .tile-grid{ grid-template-columns:1fr; }
   .scholar-table{ font-size:.85rem; }
-  .footer-grid{ grid-template-columns:1fr; }
+  footer.site-footer{ margin-top:54px; padding-top:42px; }
+  .footer-wave{ top:-54px; height:66px; }
+  .footer-grid{ grid-template-columns:1fr; gap:34px; }
+  .footer-brand-col{ grid-column:auto; }
+  .footer-brand-col .fbrand{ width:min(220px,100%); min-height:110px; }
+  .footer-brand-col .fbrand img{ height:94px; }
+  .footer-bottom{ grid-template-columns:1fr; padding-top:24px; }
+  .footer-bottom-item,.footer-bottom-item:first-child{ padding:0; }
+  .footer-bottom-item + .footer-bottom-item{ border-left:0; border-top:1px solid rgba(255,255,255,.15); padding-top:18px; margin-top:18px; }
+  .footer-bottom-item:last-child{ grid-column:auto; padding-top:18px; }
   .form-grid{ grid-template-columns:1fr; }
   .leader-grid{ grid-template-columns:1fr 1fr; }
   .gallery-grid{ grid-template-columns:1fr 1fr; grid-auto-rows:120px; }
@@ -921,14 +1534,24 @@ footer.site-footer{ background:var(--navy-deep); color:#c3cbdc; padding-top:60px
 
 /* ---- Small phones ---- */
 @media (max-width:480px){
-  .nav-row{ padding:6px 12px; gap:10px; min-height:64px; }
-  .brand img{ width:64px; max-width:64px; border-radius:12px; }
-  .brand .brand-text span:last-child{ font-size:.9rem; }
+  .brand-row{ min-height:78px; padding:6px 12px; gap:10px; }
+  .brand-row .brand img{ width:90px; max-width:90px; height:auto; border-radius:0; }
+  .brand-row > .btn{ padding:9px 12px; font-size:.74rem; }
+  .nav-row{ padding:3px 12px; gap:10px; min-height:50px; }
+  /* Four stat plaques stacked one-per-row would push the CTAs off a phone
+     screen, so they pair up and the headline gives back a little size. */
+  .hero{ padding:58px 0 84px; }
+  .hero h1{ font-size:2.05rem; }
+  .hero p.lead{ font-size:.98rem; }
+  .hero-stats{ gap:10px; margin-top:32px; }
+  .hero-stats div{ flex:1 1 calc(50% - 10px); padding:12px 15px; }
+  .hero-stats strong{ font-size:1.5rem; }
   nav.primary-nav{ width:min(320px,92vw); }
   .topbar .wrap{ padding:6px 12px; justify-content:center; }
   .topbar .socials{ gap:8px; }
-  .topbar .socials a{ padding:3px 9px; font-size:.72rem; }
-  .footer-bottom{ flex-direction:column; align-items:flex-start; }
+  .topbar .socials a{ width:30px; height:30px; padding:0; }
+  .footer-brand-col .fbrand{ width:205px; min-height:102px; }
+  .footer-brand-col .fbrand img{ height:86px; }
   .leader-grid{ grid-template-columns:1fr; }
   .gallery-grid{ grid-template-columns:1fr; grid-auto-rows:180px; }
 }
@@ -942,4 +1565,7 @@ footer.site-footer{ background:var(--navy-deep); color:#c3cbdc; padding-top:60px
     transition-duration:.01ms !important;
   }
   nav.primary-nav.open > ul > li{ opacity:1; transform:none; }
+  /* The reveal transition is neutralised above, so without this the elements
+     would simply stay at opacity:0 forever. */
+  .reveal, .reveal.is-visible{ opacity:1 !important; translate:none !important; }
 }
