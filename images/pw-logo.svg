@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  PLACEHOLDER — Physics Wallah (PW) partner mark.
+
+  This is a neutral stand-in drawn in-house so the Results page has a real logo
+  slot to lay out against. It is NOT the official Physics Wallah trademark.
+
+  To use the official mark: replace this file with the asset supplied by PW,
+  keeping the filename `pw-logo.svg`. If PW supply a PNG instead, drop it in as
+  `images/pw-logo.png` and change the two `src` attributes in results.html.
+  Aim for a roughly 3.5:1 landscape aspect ratio so the layout holds.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 252 72" width="252" height="72"
+     role="img" aria-label="PW — Physics Wallah">
+  <defs>
+    <linearGradient id="pwBadge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3B2E92"/>
+      <stop offset="1" stop-color="#5B3FD1"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Monogram badge -->
+  <rect x="2" y="6" width="60" height="60" rx="17" fill="url(#pwBadge)"/>
+  <text x="32" y="46.5" text-anchor="middle"
+        font-family="'Arial Black', 'Helvetica Neue', Helvetica, Arial, sans-serif"
+        font-size="27" font-weight="900" letter-spacing="-0.5" fill="#ffffff">PW</text>
+
+  <!-- Wordmark -->
+  <text x="76" y="35"
+        font-family="'Arial Black', 'Helvetica Neue', Helvetica, Arial, sans-serif"
+        font-size="18" font-weight="900" letter-spacing="0.4" fill="#241C63">PHYSICS</text>
+  <text x="76" y="56"
+        font-family="'Arial Black', 'Helvetica Neue', Helvetica, Arial, sans-serif"
+        font-size="18" font-weight="900" letter-spacing="0.4" fill="#241C63">WALLAH</text>
+</svg>
