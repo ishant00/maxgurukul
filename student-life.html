@@ -5,8 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Student Life | Max The Gurukul, Karnal</title>
 <meta name="description" content="Student leaders, voices of Gurukul, daily routine, mess menu and gallery at Max The Gurukul.">
-<link rel="icon" href="images/logo.png">
+<link rel="icon" type="image/png" href="images/favicon.png">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/chatbot.css">
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -29,7 +30,11 @@
 <header class="site-header">
   <div class="nav-row wrap">
     <a href="index.html" class="brand">
-      <img src="images/logo.png" alt="Max The Gurukul logo">
+      <picture>
+        <source type="image/webp" srcset="images/optimized/logo-160.webp 160w, images/optimized/logo-320.webp 320w, images/optimized/logo-480.webp 480w" sizes="122px">
+        <img src="images/optimized/logo-160.png" srcset="images/optimized/logo-160.png 160w, images/optimized/logo-320.png 320w, images/optimized/logo-480.png 480w" sizes="122px"
+             width="480" height="320" alt="Max The Gurukul logo" decoding="async">
+      </picture>
       <span class="brand-text">
         <span>The Future Begins Here</span>
         <span>MAX THE GURUKUL</span>
@@ -102,7 +107,7 @@
       <h2>Voices of Max The Gurukul</h2>
       <div class="stripe"><span class="b1"></span><span class="b2"></span><span class="b3"></span></div>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+    <div class="split-2" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
       <div class="message-block" style="grid-template-columns:80px 1fr;">
         <div class="portrait" style="aspect-ratio:1;font-size:1.4rem;">S</div>
         <div><span class="role">Student Voice</span><p>"Life at the Gurukul taught me more than any textbook could — from the parade ground to the classroom, every day builds a little more discipline and confidence."</p></div>
@@ -116,7 +121,7 @@
 </section>
 
 <section id="routine">
-  <div class="wrap" style="display:grid;grid-template-columns:1.1fr .9fr;gap:50px;">
+  <div class="wrap split-2" style="display:grid;grid-template-columns:1.1fr .9fr;gap:50px;">
     <div>
       <span class="eyebrow">A Day At Gurukul</span>
       <h2 style="margin:10px 0 16px;">Daily Routine</h2>
@@ -152,15 +157,76 @@
       <p>There is always something happening at Max The Gurukul — students laughing with friends, cheering for athletes, singing songs, participating in activities, and quenching the thirst for learning.</p>
     </div>
     <div class="gallery-grid">
-      <div class="gallery-tile wide tall"><span>Sports & Athletics</span></div>
-      <div class="gallery-tile g2"><span>Cultural Events</span></div>
-      <div class="gallery-tile g3"><span>Hawan & Prayer</span></div>
-      <div class="gallery-tile"><span>Classroom Life</span></div>
-      <div class="gallery-tile g2 wide"><span>NCC & Parade</span></div>
-      <div class="gallery-tile g3"><span>Art & Craft</span></div>
-      <div class="gallery-tile"><span>Excursions</span></div>
+      <!-- Real photographs rather than CSS backgrounds. A background-image cannot
+           carry srcset or loading="lazy", so the previous version of this mosaic
+           was seven unavoidable multi-megabyte downloads - and its
+           url('../site/images/...') paths only resolved because the folder above
+           this one happens to be named `site`; from public_html/ they 404.
+           Served from images/optimized/; see tools/README.md. -->
+      <div class="gallery-tile has-photo wide tall" style="--pos:center 45%">
+        <picture>
+          <source type="image/webp" srcset="images/optimized/volleyball-match-400.webp 400w, images/optimized/volleyball-match-640.webp 640w, images/optimized/volleyball-match-900.webp 900w, images/optimized/volleyball-match-1280.webp 1280w" sizes="(max-width:980px) calc(100vw - 56px), (max-width:1180px) calc((100vw - 70px) / 2), 555px">
+          <img src="images/optimized/volleyball-match-640.jpg" srcset="images/optimized/volleyball-match-400.jpg 400w, images/optimized/volleyball-match-640.jpg 640w, images/optimized/volleyball-match-900.jpg 900w, images/optimized/volleyball-match-1280.jpg 1280w"
+               sizes="(max-width:980px) calc(100vw - 56px), (max-width:1180px) calc((100vw - 70px) / 2), 555px"
+               width="1280" height="1707" alt="A volleyball rally with the ball in the air and players on both sides of the net" loading="lazy" decoding="async">
+        </picture>
+        <span>Sports &amp; Athletics</span>
+      </div>
+      <div class="gallery-tile has-photo" style="--pos:center 45%">
+        <picture>
+          <source type="image/webp" srcset="images/optimized/smart-classroom-lesson-400.webp 400w, images/optimized/smart-classroom-lesson-640.webp 640w, images/optimized/smart-classroom-lesson-900.webp 900w, images/optimized/smart-classroom-lesson-1280.webp 1280w" sizes="(max-width:480px) calc(100vw - 56px), (max-width:980px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 98px) / 4), 270px">
+          <img src="images/optimized/smart-classroom-lesson-640.jpg" srcset="images/optimized/smart-classroom-lesson-400.jpg 400w, images/optimized/smart-classroom-lesson-640.jpg 640w, images/optimized/smart-classroom-lesson-900.jpg 900w, images/optimized/smart-classroom-lesson-1280.jpg 1280w"
+               sizes="(max-width:480px) calc(100vw - 56px), (max-width:980px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 98px) / 4), 270px"
+               width="1280" height="1707" alt="Students at their desks facing an interactive smart board" loading="lazy" decoding="async">
+        </picture>
+        <span>Interactive Learning</span>
+      </div>
+      <div class="gallery-tile has-photo">
+        <picture>
+          <source type="image/webp" srcset="images/optimized/library-study-carrels-400.webp 400w, images/optimized/library-study-carrels-640.webp 640w, images/optimized/library-study-carrels-900.webp 900w, images/optimized/library-study-carrels-1280.webp 1280w" sizes="(max-width:480px) calc(100vw - 56px), (max-width:980px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 98px) / 4), 270px">
+          <img src="images/optimized/library-study-carrels-640.jpg" srcset="images/optimized/library-study-carrels-400.jpg 400w, images/optimized/library-study-carrels-640.jpg 640w, images/optimized/library-study-carrels-900.jpg 900w, images/optimized/library-study-carrels-1280.jpg 1280w"
+               sizes="(max-width:480px) calc(100vw - 56px), (max-width:980px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 98px) / 4), 270px"
+               width="1280" height="1707" alt="Students reading at individual wooden study carrels" loading="lazy" decoding="async">
+        </picture>
+        <span>Reading &amp; Research</span>
+      </div>
+      <div class="gallery-tile has-photo tall">
+        <picture>
+          <source type="image/webp" srcset="images/optimized/classroom-full-session-400.webp 400w, images/optimized/classroom-full-session-640.webp 640w, images/optimized/classroom-full-session-900.webp 900w, images/optimized/classroom-full-session-1280.webp 1280w" sizes="(max-width:480px) calc(100vw - 56px), (max-width:980px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 98px) / 4), 270px">
+          <img src="images/optimized/classroom-full-session-640.jpg" srcset="images/optimized/classroom-full-session-400.jpg 400w, images/optimized/classroom-full-session-640.jpg 640w, images/optimized/classroom-full-session-900.jpg 900w, images/optimized/classroom-full-session-1280.jpg 1280w"
+               sizes="(max-width:480px) calc(100vw - 56px), (max-width:980px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 98px) / 4), 270px"
+               width="1280" height="1707" alt="A wide view down a full classroom during a lesson" loading="lazy" decoding="async">
+        </picture>
+        <span>Classroom Life</span>
+      </div>
+      <div class="gallery-tile has-photo wide" style="--pos:center 45%">
+        <picture>
+          <source type="image/webp" srcset="images/optimized/martial-arts-training-400.webp 400w, images/optimized/martial-arts-training-640.webp 640w, images/optimized/martial-arts-training-900.webp 900w, images/optimized/martial-arts-training-1280.webp 1280w" sizes="(max-width:980px) calc(100vw - 56px), (max-width:1180px) calc((100vw - 70px) / 2), 555px">
+          <img src="images/optimized/martial-arts-training-640.jpg" srcset="images/optimized/martial-arts-training-400.jpg 400w, images/optimized/martial-arts-training-640.jpg 640w, images/optimized/martial-arts-training-900.jpg 900w, images/optimized/martial-arts-training-1280.jpg 1280w"
+               sizes="(max-width:980px) calc(100vw - 56px), (max-width:1180px) calc((100vw - 70px) / 2), 555px"
+               width="1280" height="2276" alt="Two students sparring in protective gear on the mats in the indoor hall" loading="lazy" decoding="async">
+        </picture>
+        <span>Games &amp; Teamwork</span>
+      </div>
+      <div class="gallery-tile has-photo">
+        <picture>
+          <source type="image/webp" srcset="images/optimized/science-lab-experiment-400.webp 400w, images/optimized/science-lab-experiment-640.webp 640w, images/optimized/science-lab-experiment-900.webp 900w, images/optimized/science-lab-experiment-1280.webp 1280w, images/optimized/science-lab-experiment-1800.webp 1800w" sizes="(max-width:480px) calc(100vw - 56px), (max-width:980px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 98px) / 4), 270px">
+          <img src="images/optimized/science-lab-experiment-640.jpg" srcset="images/optimized/science-lab-experiment-400.jpg 400w, images/optimized/science-lab-experiment-640.jpg 640w, images/optimized/science-lab-experiment-900.jpg 900w, images/optimized/science-lab-experiment-1280.jpg 1280w, images/optimized/science-lab-experiment-1800.jpg 1800w"
+               sizes="(max-width:480px) calc(100vw - 56px), (max-width:980px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 98px) / 4), 270px"
+               width="1800" height="1350" alt="Students gathered around a teacher demonstrating an experiment with test tubes" loading="lazy" decoding="async">
+        </picture>
+        <span>Practical Learning</span>
+      </div>
+      <div class="gallery-tile has-photo">
+        <picture>
+          <source type="image/webp" srcset="images/optimized/hostel-wing-400.webp 400w, images/optimized/hostel-wing-640.webp 640w, images/optimized/hostel-wing-900.webp 900w, images/optimized/hostel-wing-1280.webp 1280w" sizes="(max-width:480px) calc(100vw - 56px), (max-width:980px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 98px) / 4), 270px">
+          <img src="images/optimized/hostel-wing-640.jpg" srcset="images/optimized/hostel-wing-400.jpg 400w, images/optimized/hostel-wing-640.jpg 640w, images/optimized/hostel-wing-900.jpg 900w, images/optimized/hostel-wing-1280.jpg 1280w"
+               sizes="(max-width:480px) calc(100vw - 56px), (max-width:980px) calc((100vw - 70px) / 2), (max-width:1180px) calc((100vw - 98px) / 4), 270px"
+               width="1280" height="1707" alt="Bunk beds and wardrobes along the hostel wing" loading="lazy" decoding="async">
+        </picture>
+        <span>Hostel Life</span>
+      </div>
     </div>
-    <p class="gallery-note">Placeholder gallery — swap these tiles for real campus photographs whenever you're ready to share them.</p>
   </div>
 </section>
 
@@ -177,7 +243,11 @@
     <div class="footer-grid">
       <div>
         <div class="fbrand">
-          <img src="images/logo.png" alt="Max The Gurukul logo">
+          <picture>
+            <source type="image/webp" srcset="images/optimized/logo-240.webp 240w, images/optimized/logo-480.webp 480w" sizes="250px">
+            <img src="images/optimized/logo-320.png" srcset="images/optimized/logo-240.png 240w, images/optimized/logo-320.png 320w, images/optimized/logo-480.png 480w" sizes="250px"
+                 width="250" height="167" alt="Max The Gurukul logo" decoding="async" loading="lazy">
+          </picture>
         </div>
         <p>International education with traditional values — a modern Gurukul nurturing NDA, Sainik School and competitive-exam aspirants alongside strong character and discipline.</p>
       </div>
@@ -222,6 +292,7 @@
   </div>
 </footer>
 <script src="js/script.js"></script>
+<script src="js/chatbot.js"></script>
 <script src="js/notifications.js"></script>
 </body>
 </html>

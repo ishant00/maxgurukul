@@ -1,0 +1,1 @@
+<?php require_once __DIR__.'/../admin/bootstrap.php'; header('Content-Type: application/json'); $m=$_GET['module']??'';$f=__DIR__.'/cms_storage.json';$rows=file_exists($f)?json_decode(file_get_contents($f),true):[];if(!is_array($rows))$rows=[];echo json_encode(array_values(array_filter($rows,fn($r)=>($r['module']??'')===$m&&($r['is_published']??true))));

@@ -705,12 +705,16 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // Simple enquiry form handler (front-end only placeholder)
+  // Store enquiries in the Hostinger-compatible PHP JSON backend.
   document.querySelectorAll('form.enquiry-form').forEach(function (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var note = form.querySelector('.form-note');
-      if (note) note.textContent = 'Thank you! Our admissions team will contact you shortly.';
+      var data = new FormData(form);
+      fetch('backend/form_submit.php', {method:'POST', body:data})
+        .then(function(r){ return r.json().then(function(x){ if(!r.ok) throw new Error(x.error || 'Unable to send'); return x; }); })
+        .then(function(){ if(note) note.textContent = 'Thank you! Our admissions team will contact you shortly.'; form.reset(); })
+        .catch(function(err){ if(note) note.textContent = err.message || 'Unable to send your enquiry right now.'; });
     });
   });
 });
